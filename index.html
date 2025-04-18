@@ -1,0 +1,655 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
+.mac-os-11 { --title-bar-height: 28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5 { white-space: pre-wrap; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+thead, tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+svg { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; border-color: transparent !important; padding-top: 0px !important; padding-bottom: 0px !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  #write > p:nth-child(1) { margin-top: 0px; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+  figure { overflow-x: visible; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.reversefootnote { font-family: ui-monospace, sans-serif; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; overflow-wrap: anywhere; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+mjx-container { break-inside: avoid; }
+.md-alert.md-alert-note { border-left-color: rgb(9, 105, 218); }
+.md-alert.md-alert-important { border-left-color: rgb(130, 80, 223); }
+.md-alert.md-alert-warning { border-left-color: rgb(154, 103, 0); }
+.md-alert.md-alert-tip { border-left-color: rgb(31, 136, 61); }
+.md-alert.md-alert-caution { border-left-color: rgb(207, 34, 46); }
+.md-alert { padding: 0px 1em; margin-bottom: 16px; color: inherit; border-left: 0.25em solid rgb(0, 0, 0); }
+.md-alert-text-note { color: rgb(9, 105, 218); }
+.md-alert-text-important { color: rgb(130, 80, 223); }
+.md-alert-text-warning { color: rgb(154, 103, 0); }
+.md-alert-text-tip { color: rgb(31, 136, 61); }
+.md-alert-text-caution { color: rgb(207, 34, 46); }
+.md-alert-text { font-size: 0.9rem; font-weight: 700; }
+.md-alert-text svg { fill: currentcolor; position: relative; top: 0.125em; margin-right: 1ch; overflow: visible; }
+.md-alert-text-container::after { content: attr(data-text); text-transform: capitalize; pointer-events: none; margin-right: 1ch; }
+
+
+html {
+	font-size: 19px;
+}
+
+html, body {
+	margin: auto;
+	background: #fefefe;
+	-webkit-font-smoothing: antialiased;
+}
+body {
+	font-family: "Vollkorn", Palatino, Times;
+	color: #333;
+	line-height: 1.4;
+	text-align: justify;
+}
+
+#write {
+	max-width: 960px;
+	margin: 0 auto;
+	margin-bottom: 2em;
+	line-height: 1.53;
+	padding-top: 40px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1100px;
+	}
+}
+
+@media print {
+	html {
+		font-size: 13px;
+	}
+}
+
+/* Typography
+-------------------------------------------------------- */
+
+#write>h1:first-child,
+h1 {
+	margin-top: 1.6em;
+	font-weight: normal;
+}
+
+h1 {
+	font-size:3em;
+}
+
+h2 {
+	margin-top:2em;
+	font-weight: normal;
+}
+
+h3 {
+	font-weight: normal;
+	font-style: italic;
+	margin-top: 3em;
+}
+
+h1, 
+h2, 
+h3{
+	text-align: center;
+}
+
+h2:after{
+	border-bottom: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    display: block;
+    margin: 0 auto;
+    height: 1px;
+}
+
+h1+h2, h2+h3 {
+	margin-top: 0.83em;
+}
+
+p,
+.mathjax-block {
+	margin-top: 0;
+	-webkit-hypens: auto;
+	-moz-hypens: auto;
+	hyphens: auto;
+}
+ul {
+	list-style: square;
+	padding-left: 1.2em;
+}
+ol {
+	padding-left: 1.2em;
+}
+
+@media print {
+	ol {
+		padding-left: 40px;
+	}
+}
+
+blockquote {
+	margin-left: 1em;
+	padding-left: 1em;
+	border-left: 1px solid #ddd;
+}
+code,
+pre {
+	font-family: "Consolas", "Menlo", "Monaco", monospace, serif;
+	font-size: .9em;
+	background: white;
+}
+.md-fences{
+	margin-left: 1em;
+	padding-left: 1em;
+	border: 1px solid #ddd;
+	padding-bottom: 8px;
+	padding-top: 6px;
+	margin-bottom: 1.5em;
+}
+
+a {
+	color: #2484c1;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+a img {
+	border: none;
+}
+h1 a,
+h1 a:hover {
+	color: #333;
+	text-decoration: none;
+}
+hr {
+	color: #ddd;
+	height: 1px;
+	margin: 2em 0;
+	border-top: solid 1px #ddd;
+	border-bottom: none;
+	border-left: 0;
+	border-right: 0;
+}
+.ty-table-edit {
+	background: #ededed;
+    padding-top: 4px;
+}
+table {
+	margin-bottom: 1.333333rem
+}
+table th,
+table td {
+	padding: 8px;
+	line-height: 1.333333rem;
+	vertical-align: top;
+	border-top: 1px solid #ddd
+}
+table th {
+	font-weight: bold
+}
+table thead th {
+	vertical-align: bottom
+}
+table caption+thead tr:first-child th,
+table caption+thead tr:first-child td,
+table colgroup+thead tr:first-child th,
+table colgroup+thead tr:first-child td,
+table thead:first-child tr:first-child th,
+table thead:first-child tr:first-child td {
+	border-top: 0
+}
+table tbody+tbody {
+	border-top: 2px solid #ddd
+}
+
+.task-list{
+	padding:0;
+}
+
+.md-task-list-item {
+	padding-left: 1.6rem;
+}
+
+.md-task-list-item > input:before {
+	content: '\221A';
+	display: inline-block;
+	width: 1.33333333rem;
+  	height: 1.6rem;
+	vertical-align: middle;
+	text-align: center;
+	color: #ddd;
+	background-color: #fefefe;
+}
+
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before{
+	color: inherit;
+}
+.md-tag {
+	color: inherit;
+	font: inherit;
+}
+#write pre.md-meta-block {
+	min-height: 35px;
+	padding: 0.5em 1em;
+}
+#write pre.md-meta-block {
+	white-space: pre;
+	background: #f8f8f8;
+	border: 0px;
+	color: #999;
+	
+	width: 100vw;
+	max-width: calc(100% + 60px);
+	margin-left: -30px;
+	border-left: 30px #f8f8f8 solid;
+	border-right: 30px #f8f8f8 solid;
+
+	margin-bottom: 2em;
+	margin-top: -1.3333333333333rem;
+	padding-top: 26px;
+	padding-bottom: 10px;
+	line-height: 1.8em;
+	font-size: 0.9em;
+	font-size: 0.76em;
+	padding-left: 0;
+}
+.md-img-error.md-image>.md-meta{
+	vertical-align: bottom;
+}
+#write>h5.md-focus:before {
+	top: 2px;
+}
+
+.md-toc {
+	margin-top: 40px;
+}
+
+.md-toc-content {
+	padding-bottom: 20px;
+}
+
+.outline-expander:before {
+	color: inherit;
+	font-size: 14px;
+	top: auto;
+	content: "\f0da";
+	font-family: FontAwesome;
+}
+
+.outline-expander:hover:before,
+.outline-item-open>.outline-item>.outline-expander:before {
+  	content: "\f0d7";
+}
+
+/** source code mode */
+#typora-source {
+	font-family: Courier, monospace;
+    color: #6A6A6A;
+}
+
+.html-for-mac #typora-sidebar {
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+.cm-s-typora-default .cm-header, 
+.cm-s-typora-default .cm-property,
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor {
+	color: #428bca;
+}
+
+.cm-s-typora-default .cm-atom, .cm-s-typora-default .cm-number {
+	color: #777777;
+}
+
+.typora-node .file-list-item-parent-loc, 
+.typora-node .file-list-item-time, 
+.typora-node .file-list-item-summary {
+	font-family: arial, sans-serif;
+}
+
+.md-task-list-item>input {
+    margin-left: -1.3em;
+    margin-top: calc(1rem - 12px);
+}
+
+.md-mathjax-midline {
+	background: #fafafa;
+}
+
+.md-fences .code-tooltip {
+	bottom: -2em !important;
+}
+
+.dropdown-menu .divider {
+	border-color: #e5e5e5;
+}
+
+
+</style><title></title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h1 id='法语语法'><span>法语语法</span></h1><h2 id='1-陈述句la-phrase-déclarative'><span>1. 陈述句（La phrase déclarative）</span></h2><p><span>陈述句用于叙述事情，通常以句号结尾。法语的陈述句语序与汉语和英语基本一致，主语位于前，谓语位于后。</span></p><h3 id='示例'><span>示例：</span></h3><ul><li><p><span>Elle est adorable. （她很可爱）</span></p></li><li><p><span>Yoko et Thomas sont étudiants. （Yoko 和 Thomas 是学生）</span></p></li><li><p><span>J&#39;aime le français. （我喜欢法语）</span></p></li><li><p><span>Nous travaillons en groupe. （我们在小组里工作）</span></p></li><li><p><span>Elle habite à Paris. （她住在巴黎）</span></p></li></ul><h2 id='2-疑问句la-proposition-interrogative'><span>2. 疑问句（La proposition interrogative）</span></h2><h3 id='一般疑问句与特殊疑问句'><span>一般疑问句与特殊疑问句</span></h3><h4 id='一般疑问句'><span>一般疑问句</span></h4><p><span>没有疑问词的疑问句统称为一般疑问句，通常需要用 </span><code>oui</code><span>（是）或 </span><code>non</code><span>（不是）作答。</span></p><ul><li><p><strong><span>示例</span></strong><span>：</span></p><ul><li><p><span>Tu vas bien ? - Oui, et toi ? （你好吗？ - 好的，你呢？）</span></p></li><li><p><span>Est-ce que c&#39;est difficile ? - Oui, madame. （这很难吗？ - 是的，女士。）</span></p></li></ul></li></ul><h4 id='语调'><span>语调：</span></h4><p><span>一般疑问句通常在句末语调上升。</span></p><h4 id='特殊疑问句'><span>特殊疑问句</span></h4><p><span>带有疑问词的疑问句统称为特殊疑问句，不需要用 </span><code>oui</code><span> 或 </span><code>non</code><span> 作答。</span></p><ul><li><p><strong><span>示例</span></strong><span>：</span></p><ul><li><p><span>Comment allez-vous ? - Très bien, merci et vous ? （你好吗？ - 很好，谢谢，你呢？）</span></p></li><li><p><span>Vous habitez où ? - 26 rue Perrier, à Bordeaux. （你住在哪里？ - 波尔多的佩里街26号。）</span></p></li></ul></li></ul><h4 id='语调-2'><span>语调：</span></h4><ul><li><p><span>如果疑问词位于句首，语调可以上升或下降。</span></p></li><li><p><span>如果疑问词位于句末，语调要上升。</span></p></li></ul><h2 id='3-疑问句的三种基本构成方式'><span>3. 疑问句的三种基本构成方式</span></h2><h3 id='1-主语与谓语动词倒装'><span>1. 主语与谓语动词倒装</span></h3><p><span>如果主语是代词，动词与主语之间需要用连字符（&quot;-&quot;）连接。</span></p><ul><li><p><strong><span>示例</span></strong><span>：</span></p><ul><li><p><span>Où va Pierre ? （Pierre去哪儿了？）</span></p></li><li><p><span>Avez-vous des questions ? （你们有问题吗？）</span></p></li><li><p><span>Comment allez-vous ? （你好吗？）</span></p></li><li><p><span>Comment va-t-elle ? （她怎么样？）</span></p></li></ul></li></ul><h3 id='2-借助-est-ce-que-结构'><span>2. 借助 </span><code>est-ce que</code><span> 结构</span></h3><p><span>在这种结构中，主语和动词不倒装。</span></p><ul><li><p><strong><span>示例</span></strong><span>：</span></p><ul><li><p><span>Est-ce que vous êtes Monsieur Sardou ? （您是Sardou先生吗？）</span></p></li><li><p><span>Quand est-ce que nous allons au parc ? （我们什么时候去公园？）</span></p></li><li><p><span>Qu&#39;est-ce qu&#39;ils font ? （他们在做什么？）</span></p></li></ul></li></ul><h3 id='3-陈述句语序通过语调上升表达疑问'><span>3. 陈述句语序，通过语调上升表达疑问</span></h3><p><span>这种构成方式常用于口语表达，语调上升表示疑问。</span></p><ul><li><p><strong><span>示例</span></strong><span>：</span></p><ul><li><p><span>Vous êtes japonaise ? （你是日本人吗？）</span></p></li><li><p><span>Tu t&#39;appelles comment ? （你叫什么名字？）</span></p></li></ul></li></ul><h2 id='4-特殊疑问句的特殊情况'><span>4. 特殊疑问句的特殊情况</span></h2><p><span>特殊疑问句中的疑问词 </span><code>que</code><span> 在某些情况下可以变为 </span><code>quoi</code><span>，特别是在句子结构为陈述句时。</span></p><ul><li><p><strong><span>示例</span></strong><span>：</span></p><ul><li><p><span>Qu&#39;est-ce que c&#39;est ? → C&#39;est quoi ? （这是什么？ → 这是什么？）</span></p></li></ul></li></ul><h2 id='说明'><span>说明：</span></h2><ol><li><p><span>上述三种疑问句的构成方式在语言意义上没有区别，主要的差异体现在语体的使用：一般认为倒装结构较为正式和书面，而其他两种结构则更为口语化。</span></p></li><li><p><span>在非常口语化的表达中，即使疑问词前置，主语和动词也不一定进行倒装。</span></p></li></ol><ul><li><p><strong><span>口语化示例</span></strong><span>：</span></p><ul><li><p><span>Comment tu t&#39;appelles ? （你叫什么名字？）</span></p></li><li><p><span>Où tu vas ? （你去哪儿？）</span></p></li></ul></li></ul><h3 id='1-否定句-否定形式'><span>1. </span><strong><span>否定句 (否定形式)</span></strong></h3><p><span>最常见的否定形式是将副词短语</span><strong><span>ne... pas</span></strong><span>置于相变动词的位置旁边。例子：</span></p><ul><li><p><span>Elle ne parle pas anglais.</span></p></li><li><p><span>Tu ne connais pas ?</span></p></li><li><p><span>Ce n’est pas quelqu’un.</span></p></li></ul><p><strong><span>注意</span></strong><span>：如果后面跟有元音字母和静音的h，ne后面会发生音变：</span></p><ul><li><p><span>Elle n’habite pas à Paris.</span></p></li><li><p><span>Ils n’aiment pas voyager.</span></p></li><li><p><span>Il n’est pas célibataire.</span></p></li><li><p><span>Vous n’apprenez pas l’anglais.</span></p></li></ul><p><strong><span>口语中，否定词常被省略，只有pas表示否定。例如</span></strong><span>：</span></p><ul><li><p><span>C’est pas facile.</span></p></li><li><p><span>Il fait pas beau.</span></p></li><li><p><span>Je sais pas.</span></p></li></ul><hr /><h3 id='2-名词和形容词的性数变化'><span>2. </span><strong><span>名词和形容词的性数变化</span></strong></h3><p><span>语言中名词的阳性一般与形容词的性数配合，从开始学习时需要牢记。人和动物等生物命名，按自我能力的性别等。</span></p><p><strong><span>形容词词尾的变性规则：</span></strong></p><p>&nbsp;</p><figure class='table-figure'><table><thead><tr><th><span>变化规则</span></th><th><span>例词</span></th></tr></thead><tbody><tr><td><span>-eur → -euse</span></td><td><span>chanteur → chanteuse, rêveur → rêveuse</span></td></tr><tr><td><span>-eur → -rice</span></td><td><span>acteur → actrice, lecteur → lectrice</span></td></tr><tr><td><span>-x → -se</span></td><td><span>sérieux → sérieuse, heureux → heureuse</span></td></tr><tr><td><span>-f → -ve</span></td><td><span>neuf → neuve, vif → vive</span></td></tr><tr><td><span>-eau → -elle</span></td><td><span>beau → belle, nouveau → nouvelle</span></td></tr></tbody></table></figure><p><strong><span>以字母e结尾的名词和形容词保持不变</span></strong><span>：</span>
+<span> architecte, styliste, secrétaire, facile, difficile, agréable</span></p><p><strong><span>一些职业名词有性别形式</span></strong><span>：</span></p><ul><li><p><span>professeur, médecin, écrivain, peintre, mannequin</span></p></li></ul><p><strong><span>特例</span></strong><span>：</span></p><ul><li><p><span>gentil → gentille</span></p></li><li><p><span>vieux → vieille</span></p></li></ul><hr /><h3 id='3-名词复数'><span>3. </span><strong><span>名词复数</span></strong></h3><p><span>大部分名词和形容词单数变复数时只在词尾加s，通常不会带来发音上的变化。例如：</span></p><ul><li><p><span>un professeur → deux professeurs</span></p></li><li><p><span>un professeur gentil → deux professeurs gentils</span></p></li></ul><h3 id='单数变复数'><strong><span>单数变复数</span></strong></h3><p><span>大部分名词和形容词单数变复数时，在词尾加 </span><strong><span>s</span></strong><span>，通常不会带来发音上的变化。例如：</span></p><ul><li><p><span>un professeur → deux professeurs</span></p></li><li><p><span>un professeur gentil → deux professeurs gentils</span></p></li></ul><hr /><h3 id='特殊变化'><strong><span>特殊变化</span></strong></h3><p>&nbsp;</p><figure class='table-figure'><table><thead><tr><th><span>词尾字母</span></th><th><span>复数形式</span></th><th><span>例词</span></th></tr></thead><tbody><tr><td><strong><span>-s, -x</span></strong></td><td><span>不变</span></td><td><span>un livre français → dix livres français   Il est heureux. → Ils sont heureux.</span></td></tr><tr><td><strong><span>-eau</span></strong></td><td><span>-eaux</span></td><td><span>un beau cadeau → trois beaux cadeaux   un grand bateau → cinq grands bateaux</span></td></tr><tr><td><strong><span>-al</span></strong></td><td><span>-aux</span></td><td><span>un journal → des journaux   un drapeau national → des drapeaux nationaux</span></td></tr></tbody></table></figure><hr /><h3 id='名词与形容词的阴性复数'><strong><span>名词与形容词的阴性复数</span></strong></h3><p><span>找到阴性词形后，在阴性基础上变复数。</span></p><ul><li><p><span>un Italien → une Italienne</span></p></li><li><p><span>un beau garçon → une belle fille</span></p></li><li><p><span>un étudiant étranger → une étudiante étrangère</span></p></li><li><p><span>un papa protecteur → une maman protectrice</span></p></li></ul><p><span>复数形式：</span></p><ul><li><p><span>deux Italiennes</span></p></li><li><p><span>trois belles filles</span></p></li><li><p><span>deux étudiantes étrangères</span></p></li><li><p><span>des mamans protectrices</span></p></li></ul><hr /><h3 id='形容词的位置'><strong><span>形容词的位置</span></strong></h3><p><span>一般情况下，法语形容词位于所修饰的名词后面：</span></p><ul><li><p><span>une langue étrangère</span></p></li><li><p><span>un ami sympathique</span></p></li><li><p><span>une journée difficile</span></p></li></ul><p><span>一些音节较少但比较常用的形容词常位于名词前。常见的有：joli, beau, petit, grand, gros, jeune, vieux, nouveau, bon, mauvais 等。</span></p><p><span>例如：</span></p><ul><li><p><span>un joli bébé</span></p></li><li><p><span>un petit garçon</span></p></li><li><p><span>un gros livre</span></p></li><li><p><span>un bon restaurant</span></p></li><li><p><span>une vieille chanson</span></p></li></ul><p>&nbsp;</p><p>&nbsp;</p><h4 id='1-定冠词与不定冠词'><strong><span>1. 定冠词与不定冠词</span></strong></h4><p><span>法语名词前一般有限定词，冠词就是其中的一种。名词前加冠词既表示名词的性数，也表示该名词是泛指还是确指。法语冠词分为定冠词、不定冠词和部分冠词三类，本课将学习前两种冠词。请看下表：</span></p><figure class='table-figure'><table><thead><tr><th><strong><span>阳性单数</span></strong></th><th><strong><span>阴性单数</span></strong></th><th><strong><span>阴性、阳性复数</span></strong></th></tr></thead><tbody><tr><td><span>定冠词</span></td><td><span>le</span></td><td><span>la</span></td></tr><tr><td><span>不定冠词</span></td><td><span>un</span></td><td><span>une</span></td></tr></tbody></table></figure><hr /><h4 id='用法'><strong><span>用法：</span></strong></h4><ul><li><p><strong><span>不定冠词：</span></strong><span> 初次提到或为不确指的名词时，使用不定冠词，有“一个”和“一些”的意思。</span>
+<span> 例：</span></p><ul><li><p><span>C&#39;est un professeur.</span></p></li><li><p><span>J&#39;ai des romans français.</span></p></li></ul></li><li><p><strong><span>定冠词：</span></strong><span> 名词一旦被确指，则使用定冠词，如以下情形：</span></p><ul><li><p><strong><span>前面已提到过的人、物或事</span></strong>
+<span> 例：</span></p><ul><li><p><span>Il y a une photo dans la lettre. La photo est belle.</span></p></li></ul></li><li><p><strong><span>有关名词已被其他成分限定</span></strong>
+<span> 例：</span></p><ul><li><p><span>C&#39;est le fils de Marie.</span></p></li></ul></li><li><p><strong><span>表示唯一的或特指的人、物或事</span></strong>
+<span> 例：</span></p><ul><li><p><span>le Soleil (太阳)，la Chine, la France</span></p></li><li><p><span>Il travaille dans le département de français et d&#39;italien.</span></p></li></ul></li><li><p><strong><span>表示人或事物的总体概念</span></strong>
+<span> 例：</span></p><ul><li><p><span>Vous aimez le café ?</span></p></li><li><p><span>J&#39;adore le sport.</span></p></li><li><p><span>Les Français sont vraiment romantiques ?</span></p></li></ul></li></ul></li><li><p><strong><span>某些情况下，名词前不需要冠词：</span></strong></p><ul><li><p><strong><span>叙述某人职业，主语是人或人称代词时</span></strong>
+<span> 例：</span></p><ul><li><p><span>Antonio est professeur.</span></p></li><li><p><span>Elle est avocate.</span></p></li></ul></li><li><p><strong><span>表达“说某种语言”时</span></strong>
+<span> 例：</span></p><ul><li><p><span>Je parle français.</span></p></li><li><p><span>Nous parlons espagnol.</span></p></li></ul></li></ul></li><li><p><strong><span>“名词 + de + 名词”结构中，后一个名词修饰、限定前面的名词，说明其性质或特征，而不表达“所属”关系时</span></strong>
+<span> 例：</span></p><ul><li><p><span>le département de français (法语系)</span></p></li><li><p><span>un cours d&#39;anglais (英语课)</span></p></li></ul><p><span>但是要说：</span></p><ul><li><p><span>la grammaire de l&#39;anglais (英语的语法)</span></p></li></ul><p><span>请对比：</span></p><ul><li><p><span>un professeur d&#39;université (一个大学老师)</span></p></li><li><p><span>les professeurs de l&#39;université (特定某所大学的老师们)</span></p></li></ul></li><li><p><strong><span>注意：</span></strong></p><ol><li><p><strong><span>le, la 所限定的名词如果以元音字母或哑音 h 开头，需要省音</span></strong>
+<span> 例：</span></p><ul><li><p><span>l&#39;ami, l&#39;école</span></p></li></ul></li><li><p><strong><span>des, les 所限定的名词如果以元音字母或哑音 h 开头，需要联诵</span></strong>
+<span> 例：</span></p><ul><li><p><span>des amis [de-za-mi]</span></p></li><li><p><span>les hommes [le-zom]</span></p></li></ul></li></ol></li></ul><hr /><h4 id='2-指示形容词-adjectifs-démonstratifs'><strong><span>2. 指示形容词 (Adjectifs démonstratifs)</span></strong></h4><p><span>指示形容词是法语限定词的一种，表示“这个”、“这些”。有四种形式：</span></p><figure class='table-figure'><table><thead><tr><th><strong><span>形式</span></strong></th><th><strong><span>使用情况</span></strong></th></tr></thead><tbody><tr><td><span>ce</span></td><td><span>在阳性单数名词前</span></td></tr><tr><td><span>cet</span></td><td><span>以元音字母或哑音 h 开头的阳性单数名词前</span></td></tr><tr><td><span>cette</span></td><td><span>阴性单数名词前</span></td></tr><tr><td><span>ces</span></td><td><span>在复数名词前</span></td></tr></tbody></table></figure><p><span>例：</span></p><ul><li><p><strong><span>ce</span></strong><span> roman, </span><strong><span>ce</span></strong><span> peintre</span></p></li><li><p><strong><span>cet</span></strong><span> ami, </span><strong><span>cet</span></strong><span> homme</span></p></li><li><p><strong><span>cette</span></strong><span> peinture, </span><strong><span>cette</span></strong><span> spécialité</span></p></li><li><p><strong><span>ces</span></strong><span> questions, </span><strong><span>ces</span></strong><span> hommes</span></p></li></ul><p><span>Here is the continuation and typeset of your text:</span></p><hr /><h3 id='3-主有形容词-adjectifs-possessifs'><strong><span>3. 主有形容词 (Adjectifs possessifs)</span></strong></h3><p><span>主有形容词可替代名词前的冠词，是名词的另一种限定词，表示：</span></p><ul><li><p><strong><span>所有</span></strong><span>（ton livre 你的书）</span></p></li><li><p><strong><span>归属</span></strong><span>（notre université 我们的大学）</span></p></li><li><p><strong><span>关联</span></strong><span>（mon voyage 我的旅行）</span></p></li></ul><p><span>主有形容词和冠词一样，位于名词前，并与名词的性数配合。此外，主有形容词要根据“所有人”的人称变化而变化。具体用法见下表：</span></p><figure class='table-figure'><table><thead><tr><th><strong><span>Singulier 在单数名词前</span></strong></th><th><strong><span>Pluriel 在复数名词前</span></strong></th><th><strong><span>Masculin 阳性</span></strong></th><th><strong><span>Féminin 阴性</span></strong></th></tr></thead><tbody><tr><td><strong><span>à moi</span></strong></td><td><strong><span>mon</span></strong></td><td><strong><span>ma</span></strong></td><td><strong><span>mes</span></strong></td></tr><tr><td><strong><span>à toi</span></strong></td><td><strong><span>ton</span></strong></td><td><strong><span>ta</span></strong></td><td><strong><span>tes</span></strong></td></tr><tr><td><strong><span>à lui/elle</span></strong></td><td><strong><span>son</span></strong></td><td><strong><span>sa</span></strong></td><td><strong><span>ses</span></strong></td></tr><tr><td><strong><span>à nous</span></strong></td><td><strong><span>notre</span></strong></td><td><strong><span>notre</span></strong></td><td><strong><span>nos</span></strong></td></tr><tr><td><strong><span>à vous</span></strong></td><td><strong><span>votre</span></strong></td><td><strong><span>votre</span></strong></td><td><strong><span>vos</span></strong></td></tr><tr><td><strong><span>à eux/elles</span></strong></td><td><strong><span>leur</span></strong></td><td><strong><span>leur</span></strong></td><td><strong><span>leurs</span></strong></td></tr></tbody></table></figure><hr /><h4 id='观察与结论'><strong><span>观察与结论：</span></strong></h4><p><span>请观察下列表达中的主有形容词，你有何发现？能得出什么结论？</span></p><ul><li><p><strong><span>Tu as mon adresse ?</span></strong></p></li><li><p><strong><span>Non, je n&#39;ai pas ton adresse, mais j&#39;ai son adresse.</span></strong></p></li><li><p><strong><span>Son histoire est intéressante. Mon histoire, non. Et ton histoire ?</span></strong></p></li></ul><p><strong><span>A son, sa, ses 和 leur, leurs 的不同：</span></strong></p><ul><li><p><strong><span>Le père parle à son fils et à sa fille, il parle à ses enfants.</span></strong></p><ul><li><p><span>父亲对儿子女儿讲话，他对自己的孩子们讲话。</span></p></li></ul></li><li><p><strong><span>La mère parle à son fils et à sa fille, elle parle à ses enfants.</span></strong></p><ul><li><p><span>母亲对儿子女儿讲话，她对自己的孩子们讲话。</span></p></li></ul></li><li><p><strong><span>Les parents parlent à leur fils, à leur fille, à leurs enfants.</span></strong></p><ul><li><p><span>父母对他们的儿子女儿讲话，他们对自己的孩子们讲话。</span></p></li></ul></li></ul><hr /><h3 id='4-泛指人称代词-on'><strong><span>4. 泛指人称代词 on</span></strong></h3><p><strong><span>on</span></strong><span> 是泛指人称代词，通常用来：</span></p><ul><li><p><span>代替 </span><strong><span>nous</span></strong>
+<span> 例：</span></p><ul><li><p><span>Alice, Vincent et moi, on va au cinéma.</span>
+<span> （艾丽斯、樊尚和我，我们去看电影。）</span></p></li></ul></li><li><p><span>代替 </span><strong><span>les gens</span></strong>
+<span> 例：</span></p><ul><li><p><span>À Paris, on prend très souvent le métro pour se déplacer.</span>
+<span> （在巴黎，人们经常坐地铁出行。）</span></p></li></ul></li><li><p><span>代替 </span><strong><span>quelqu&#39;un</span></strong><span>（某人）</span>
+<span> 例：</span></p><ul><li><p><span>Écoutez ! On sonne.</span>
+<span> （听！有人按门铃。）</span></p></li></ul></li></ul><h4 id='以-on-为主语的动词如何变位'><strong><span>以 on 为主语的动词如何变位？</span></strong></h4><p><span>作为主语人称代词时，</span><strong><span>on</span></strong><span> 的对应主有形容词有两种情况：</span></p><ol><li><p><strong><span>如果 on 代替的是 les gens 或 quelqu&#39;un</span></strong><span>，那么其对应的主有形容词是 </span><strong><span>son, sa, ses</span></strong><span>。</span>
+<span> 例：</span></p><ul><li><p><span>Dans la vie, généralement, on aime sa maison, sa famille, ses amis.</span>
+<span> （在生活中，通常人们爱他们的家、家庭和朋友。）</span></p></li></ul></li><li><p><strong><span>如果 on 明显代替 nous</span></strong><span>，那么对应的主有形容词是 </span><strong><span>notre, nos</span></strong><span>。</span>
+<span> 例：</span></p><ul><li><p><span>Qu&#39;est-ce que vous aimez dans la vie ?</span></p></li><li><p><span>Nous ? On aime notre maison, notre famille et nos amis.</span>
+<span> （我们爱我们的家、家庭和朋友。）</span></p></li></ul></li></ol><hr /><h3 id='5-形容词-beau-nouveau-vieux-fou-mou-的特殊词形'><strong><span>5. 形容词 beau, nouveau, vieux, fou, mou 的特殊词形</span></strong></h3><p><span>这五个形容词在以元音字母或哑音 h 开头的阳性单数名词前，拼写发生变化，见下表：</span></p><figure class='table-figure'><table><thead><tr><th><strong><span>阳性单数</span></strong></th><th><strong><span>阳性单数特殊形式</span></strong></th><th><strong><span>阴性单数</span></strong></th><th><strong><span>阳性复数</span></strong></th><th><strong><span>阴性复数</span></strong></th></tr></thead><tbody><tr><td><span>beau</span></td><td><span>bel</span></td><td><span>belle</span></td><td><span>beaux</span></td><td><span>belles</span></td></tr><tr><td><span>nouveau</span></td><td><span>nouvel</span></td><td><span>nouvelle</span></td><td><span>nouveaux</span></td><td><span>nouvelles</span></td></tr><tr><td><span>vieux</span></td><td><span>vieil</span></td><td><span>vieille</span></td><td><span>vieux</span></td><td><span>vieilles</span></td></tr><tr><td><span>fou</span></td><td><span>fol</span></td><td><span>folle</span></td><td><span>fous</span></td><td><span>folles</span></td></tr><tr><td><span>mou</span></td><td><span>mol</span></td><td><span>molle</span></td><td><span>mous</span></td><td><span>molles</span></td></tr></tbody></table></figure><p><strong><span>注意：</span></strong>
+<span> 词形只在元音字母或哑音 h 开头的阳性单数名词前有特殊变化，在阳性复数名词前无特殊变化。</span></p><p><strong><span>例：</span></strong></p><ul><li><p><strong><span>un bel hôtel</span></strong><span> → </span><strong><span>deux beaux hôtels</span></strong></p></li><li><p><strong><span>un nouvel élève</span></strong><span> → </span><strong><span>trois nouveaux élèves</span></strong></p></li><li><p><strong><span>un vieil homme</span></strong><span> → </span><strong><span>plusieurs vieux hommes</span></strong></p></li></ul><hr /><h3 id='6-复数形容词前-de-的用法'><strong><span>6. 复数形容词前 de 的用法</span></strong></h3><p><span>不定冠词修饰名词时，如果该名词被前置形容词修饰，即不定冠词位于“复数形容词 + 名词”前时，不定冠词 </span><strong><span>des</span></strong><span> 要变为 </span><strong><span>de</span></strong><span>。</span></p><figure class='table-figure'><table><thead><tr><th><strong><span>单数</span></strong></th><th><strong><span>复数</span></strong></th></tr></thead><tbody><tr><td><span>un jeune enfant → de jeunes enfants</span></td><td><span>une belle photo → de belles photos</span></td></tr><tr><td><span>un vieil ami → de vieux amis</span></td><td><span>J&#39;ai d&#39;excellentes relations avec mes parents.</span></td></tr><tr><td><span>Romain a de bonnes relations avec sa famille.</span></td><td><span>Nous avons de nouveaux collègues cette année.</span></td></tr><tr><td><span>Voulez-vous d&#39;anciens journaux français ?</span><br /><br /></td><td>&nbsp;</td></tr></tbody></table></figure><p>&nbsp;</p><hr /><h3 id='城市与国家前地点介词的用法-prépositions-de-lieu-devant-les-villes-et-les-pays'><strong><span>城市与国家前地点介词的用法 (Prépositions de lieu devant les villes et les pays)</span></strong></h3><h4 id='在某地-或-去某地'><strong><span>“在某地” 或 “去某地”</span></strong></h4><ul><li><p><strong><span>城市 &amp; 不带冠词的国家</span></strong><span>：</span><strong><span>à</span></strong></p><ul><li><p><span>Paris</span></p></li><li><p><span>Cuba (古巴)</span></p></li></ul></li><li><p><strong><span>以辅音开头的阳性单数国家</span></strong><span>：</span><strong><span>au</span></strong></p><ul><li><p><span>Japon</span></p></li><li><p><span>Canada</span></p></li></ul></li><li><p><strong><span>以元音开头的阳性单数国家 &amp; 阴性单数国家</span></strong><span>：</span><strong><span>en</span></strong></p><ul><li><p><span>Iran（伊朗）</span></p></li><li><p><span>Espagne, Chine</span></p></li></ul></li><li><p><strong><span>国名本身是复数的国家</span></strong><span>：</span><strong><span>aux</span></strong></p><ul><li><p><span>États-Unis</span></p></li></ul></li></ul><hr /><h4 id='来自某地'><strong><span>“来自某地”</span></strong></h4><ul><li><p><strong><span>城市 &amp; 不带冠词的国家</span></strong><span>：</span><strong><span>de</span></strong><span> (或 </span><strong><span>d&#39;</span></strong><span>)</span></p><ul><li><p><span>Paris</span></p></li><li><p><span>Cuba</span></p></li></ul></li><li><p><strong><span>以元音开头的阳性单数国家</span></strong><span>：</span><strong><span>d&#39;</span></strong></p><ul><li><p><span>Iran</span></p></li></ul></li><li><p><strong><span>阴性单数国家</span></strong><span>：</span><strong><span>d&#39;</span></strong></p><ul><li><p><span>Espagne, Chine</span></p></li></ul></li><li><p><strong><span>以辅音开头的阳性单数国家</span></strong><span>：</span><strong><span>du</span></strong></p><ul><li><p><span>Japon</span></p></li><li><p><span>Canada</span></p></li></ul></li><li><p><strong><span>国名本身是复数的国家</span></strong><span>：</span><strong><span>des</span></strong></p><ul><li><p><span>États-Unis</span></p></li></ul></li></ul><hr /><h3 id='2-冠词的缩合-articles-contractés'><strong><span>2. 冠词的缩合 (Articles contractés)</span></strong></h3><p><span>当定冠词 </span><strong><span>le</span></strong><span>, </span><strong><span>les</span></strong><span> 遇到介词 </span><strong><span>à</span></strong><span> 和 </span><strong><span>de</span></strong><span> 时，须缩合，即所谓的冠词缩合，具体形态如下：</span></p><figure class='table-figure'><table><thead><tr><th><span>介词 + 定冠词</span></th><th><span>缩合形式</span></th></tr></thead><tbody><tr><td><span>à + le</span></td><td><strong><span>au</span></strong></td></tr><tr><td><span>à + les</span></td><td><strong><span>aux</span></strong></td></tr><tr><td><span>de + le</span></td><td><strong><span>du</span></strong></td></tr><tr><td><span>de + les</span></td><td><strong><span>des</span></strong></td></tr></tbody></table></figure><p><strong><span>运用时容易出错，需要特别注意</span></strong><span>。例如：</span></p><ul><li><p><span>Tu vas où en vacances ? - </span><strong><span>Au</span></strong><span> Brésil.</span></p></li><li><p><span>Le professeur parle </span><strong><span>aux</span></strong><span> étudiants.</span></p></li><li><p><span>C&#39;est l&#39;ordinateur portable </span><strong><span>du</span></strong><span> professeur.</span></p></li><li><p><span>Je travaille dans </span><strong><span>l&#39;Institut des Langues étrangères</span></strong><span>.</span></p></li><li><p><span>Je vais </span><strong><span>à la piscine</span></strong><span>.</span></p></li><li><p><span>Il habite </span><strong><span>à l&#39;hôtel</span></strong><span>.</span></p></li><li><p><span>Tu vas </span><strong><span>à l&#39;école</span></strong><span> ?</span></p></li><li><p><span>C&#39;est la voiture </span><strong><span>de la secrétaire</span></strong><span>.</span></p></li><li><p><span>Pierre est le directeur </span><strong><span>de l&#39;usine</span></strong><span>.</span></p></li></ul><hr /><h3 id='3-无人称句'><strong><span>3. 无人称句</span></strong></h3><p><span>法语有些动词只用 </span><strong><span>il</span></strong><span> 做主语，常被称作无人称动词，主要用于表达：</span></p><ul><li><p><strong><span>天气</span></strong></p><ul><li><p><strong><span>Il fait beau.</span></strong><span>（天气很好）</span></p></li><li><p><strong><span>Il neige.</span></strong><span>（下雪）</span></p></li></ul></li><li><p><strong><span>时间</span></strong></p><ul><li><p><strong><span>Il est trois heures de l&#39;après-midi.</span></strong><span>（现在是下午三点）</span></p></li></ul></li><li><p><strong><span>“（某地）有”</span></strong></p><ul><li><p><strong><span>Il y a beaucoup d&#39;universités à Aix.</span></strong><span>（在艾克斯有很多大学）</span></p></li></ul></li></ul><p><strong><span>这里的主语</span></strong><span> </span><strong><span>il</span></strong><span> 是中性代词，而不是指“他”。</span></p><hr /><h3 id='4-疑问句的回答'><strong><span>4. 疑问句的回答</span></strong></h3><p><strong><span>oui / si / non</span></strong></p><p><span>我们知道，一般疑问句要先用副词 </span><strong><span>oui</span></strong><span> 或 </span><strong><span>non</span></strong><span> 来应答。例如：</span></p><ul><li><p><strong><span>C&#39;est votre père ?</span></strong><span> - </span><strong><span>Non</span></strong><span>, c&#39;est mon oncle.</span></p></li><li><p><strong><span>Est-ce que ta belle-fille est sympathique ?</span></strong><span> - </span><strong><span>Oui</span></strong><span>, elle est adorable.</span></p></li></ul><p><span>但是，如何应答否定疑问句呢？请观察课文中出现的问答：</span></p><ul><li><p><strong><span>Tu ne m&#39;aimes plus ?</span></strong><span> - </span><strong><span>Si</span></strong><span>, je t&#39;aime.</span></p></li></ul><p><span>可见，应答法语否定疑问句时，表达肯定要用副词 </span><strong><span>si</span></strong><span>，表达否定则仍用 </span><strong><span>non</span></strong><span>。请看下例：</span></p><ul><li><p><strong><span>Ça ne va pas ?</span></strong><span> - </span><strong><span>Si</span></strong><span>, tout va bien.</span></p></li><li><p><strong><span>Il ne fait pas beau chez toi ?</span></strong><span> - </span><strong><span>Non</span></strong><span>, il pleut tous les jours !</span></p></li></ul><p>&nbsp;</p><hr /><h3 id='语法备忘法语九大词类'><strong><span>语法备忘：法语九大词类</span></strong></h3><ol><li><p><strong><span>名词</span></strong><span> (nom)</span></p></li><li><p><strong><span>限定词</span></strong><span> (déterminant)</span></p></li><li><p><strong><span>形容词</span></strong><span> (adjectif)</span></p></li><li><p><strong><span>副词</span></strong><span> (adverbe)</span></p></li><li><p><strong><span>代词</span></strong><span> (pronom)</span></p></li><li><p><strong><span>动词</span></strong><span> (verbe)</span></p></li><li><p><strong><span>介词</span></strong><span> (préposition)</span></p></li><li><p><strong><span>连词</span></strong><span> (conjonction)</span></p></li><li><p><strong><span>叹词</span></strong><span> (包括象声词) (interjection y compris les onomatopées)</span></p></li></ol><hr /><h3 id='2-部分冠词-articles-partitifs'><strong><span>2. 部分冠词 (Articles partitifs)</span></strong></h3><p><span>部分冠词指事物的一部分，数量不确定，形式为 </span><strong><span>du</span></strong><span>, </span><strong><span>de la</span></strong><span>, </span><strong><span>des</span></strong><span>。</span></p><h4 id='用法-2'><strong><span>用法：</span></strong></h4><figure class='table-figure'><table><thead><tr><th><strong><span>阳性单数</span></strong></th><th><strong><span>阴性单数</span></strong></th><th><strong><span>复数</span></strong></th></tr></thead><tbody><tr><td><strong><span>du</span></strong></td><td><strong><span>de la</span></strong></td><td><strong><span>des</span></strong></td></tr><tr><td><strong><span>例子：</span></strong></td><td><strong><span>例子：</span></strong></td><td><strong><span>例子：</span></strong></td></tr><tr><td><span>du porc, de l&#39;oignon</span></td><td><span>de la confiture, de l&#39;eau</span></td><td><span>des légumes</span></td></tr></tbody></table></figure><ul><li><p><strong><span>常用于食物前</span></strong></p><ul><li><p><span>Le matin, je prends </span><strong><span>du pain</span></strong><span> et </span><strong><span>du lait</span></strong><span>.</span></p></li><li><p><span>À midi, je mange </span><strong><span>de la viande</span></strong><span>.</span></p></li><li><p><span>Le soir, je bois </span><strong><span>du vin</span></strong><span> avant de dormir.</span></p></li></ul></li><li><p><strong><span>在抽象名词前</span></strong></p><ul><li><p><span>Les professeurs ont </span><strong><span>de la patience</span></strong><span>.</span></p></li><li><p><span>Nous avons </span><strong><span>de la chance</span></strong><span>.</span></p></li></ul></li></ul><hr /><h3 id='3-三类冠词的区分'><strong><span>3. 三类冠词的区分</span></strong></h3><ul><li><p><strong><span>定冠词</span></strong><span>：指一类人或事物的总称，或者已经出现过的、上文明确指出的人或事物。</span>
+<span> 例：</span></p><ul><li><p><strong><span>J&#39;aime bien la salade et les yaourts.</span></strong><span>（我很喜欢沙拉和酸奶）</span></p></li><li><p><strong><span>Tu peux me passer le pain, s&#39;il te plaît ?</span></strong><span>（你能把面包递给我吗？）</span></p></li></ul></li><li><p><strong><span>不定冠词</span></strong><span>：指同类人或事物中的一个，数量是可以计量的。</span>
+<span> 例：</span></p><ul><li><p><strong><span>Je prends une salade.</span></strong><span>（我吃一个沙拉）</span></p></li><li><p><strong><span>Tu veux un yaourt ?</span></strong><span>（你想要一个酸奶吗？）</span></p></li></ul></li><li><p><strong><span>部分冠词</span></strong><span>：指事物的一部分，数量上无法计量。</span>
+<span> 例：</span></p><ul><li><p><strong><span>Je prends du poulet avec des légumes.</span></strong><span>（我吃一些鸡肉和蔬菜）</span></p></li></ul></li></ul><hr /><h3 id='4-否定句中冠词的变化'><strong><span>4. 否定句中冠词的变化</span></strong></h3><ul><li><p><strong><span>定冠词无变化</span></strong>
+<span> 例：</span></p><ul><li><p><strong><span>Je n&#39;aime pas la viande.</span></strong><span>（我不喜欢肉）</span></p></li><li><p><strong><span>Ce n&#39;est pas le restaurant de mon père.</span></strong><span>（这不是我父亲的餐厅）</span></p></li></ul></li><li><p><strong><span>不定冠词和部分冠词修饰直接宾语，当表达数量为“零”时，要变为 </span></strong><span>de**</span>
+<span> 例：</span></p><ul><li><p><strong><span>Je ne bois pas de vin.</span></strong><span>（我不喝酒）</span></p></li><li><p><strong><span>Je n&#39;ai pas d&#39;ami français.</span></strong><span>（我没有法国朋友）</span></p></li><li><p><strong><span>Je ne prends jamais de café le matin, je ne peux pas supporter le café.</span></strong>
+<span> （我早上从不喝咖啡，我不能忍受咖啡）</span></p></li></ul></li></ul><h4 id='问题解答'><strong><span>问题解答：</span></strong></h4><p><span>在 </span><strong><span>&quot;ce n&#39;est pas une excellente idée&quot;</span></strong><span> 这句话中，</span><strong><span>une</span></strong><span> 为什么没有变为 </span><strong><span>de</span></strong><span>？</span></p><ul><li><p><span>这是因为在该句中，</span><strong><span>une</span></strong><span> 是用来表示一种特定的概念或判断，且 </span><strong><span>idée</span></strong><span>（想法）在此是单数且不可分割的，表示一种肯定的概念或事物。所以 </span><strong><span>une</span></strong><span> 保持不变。</span></p></li></ul><p>&nbsp;</p><hr /><h3 id='泛指代词-rien'><strong><span>泛指代词 rien</span></strong></h3><p><span>泛指代词 </span><strong><span>rien</span></strong><span> 通常与 </span><strong><span>ne</span></strong><span> 搭配使用，表达否定意义，意为“没有任何事情， 没有任何东西”，无性数变化。</span></p><h4 id='ne-rienrien-在句中做宾语'><strong><span>ne... rien</span></strong><span>：</span><strong><span>rien</span></strong><span> 在句中做宾语</span></h4><p><span>例：</span></p><ul><li><p><strong><span>Cet élève myope ne voit rien sur le tableau.</span></strong>
+<span> （这个近视的学生看不见黑板上的东西。）</span></p></li><li><p><strong><span>Mon frère mange une tartine. Je ne mange rien.</span></strong>
+<span> （我的哥哥吃一片面包。我什么也没吃。）</span></p></li><li><p><strong><span>Y a-t-il quelque chose à manger à la cantine ?</span></strong>
+<span> </span><strong><span>Non, il n&#39;y a rien à manger à la cantine après 21 heures.</span></strong>
+<span> （食堂里有东西可以吃吗？不，21点以后食堂没有东西可以吃。）</span></p></li></ul><h4 id='rien-nerien-在句中做主语'><strong><span>rien ne...</span></strong><span>：</span><strong><span>rien</span></strong><span> 在句中做主语</span></h4><p><span>例：</span></p><ul><li><p><strong><span>Rien n&#39;est intéressant.</span></strong>
+<span> （没有什么是有趣的。）</span></p></li><li><p><strong><span>Rien ne va aujourd&#39;hui.</span></strong>
+<span> （今天一切都不顺利。）</span></p></li></ul><p>&nbsp;</p><hr /><h3 id='限定词-déterminants'><strong><span>限定词 (Déterminants)</span></strong></h3><p><span>法语限定词位于名词前，用来限定名词。具体分类如下：</span></p><ul><li><p><strong><span>定冠词</span></strong><span>：</span><strong><span>le</span></strong><span>, </span><strong><span>la</span></strong><span>, </span><strong><span>les</span></strong></p></li><li><p><strong><span>不定冠词</span></strong><span>：</span><strong><span>un</span></strong><span>, </span><strong><span>une</span></strong><span>, </span><strong><span>des</span></strong></p></li><li><p><strong><span>部分冠词</span></strong><span>：</span><strong><span>du</span></strong><span>, </span><strong><span>de la</span></strong><span>, </span><strong><span>de l&#39;</span></strong><span>, </span><strong><span>des</span></strong></p></li><li><p><strong><span>主有形容词</span></strong><span>：</span><strong><span>mon</span></strong><span>, </span><strong><span>ton</span></strong><span>, </span><strong><span>son</span></strong><span>, </span><strong><span>ma</span></strong><span>, </span><strong><span>ta</span></strong><span>, </span><strong><span>sa</span></strong><span>, </span><strong><span>mes</span></strong><span>, </span><strong><span>tes</span></strong><span>, </span><strong><span>ses</span></strong><span>, </span><strong><span>notre</span></strong><span>, </span><strong><span>votre</span></strong><span>, </span><strong><span>leur</span></strong><span>, </span><strong><span>nos</span></strong><span>, </span><strong><span>vos</span></strong><span>, </span><strong><span>leurs</span></strong></p></li><li><p><strong><span>指示形容词</span></strong><span>：</span><strong><span>ce</span></strong><span>, </span><strong><span>cet</span></strong><span>, </span><strong><span>cette</span></strong><span>, </span><strong><span>ces</span></strong></p></li><li><p><strong><span>泛指形容词</span></strong><span>：</span><strong><span>autre</span></strong><span> → </span><strong><span>une autre région</span></strong><span>, </span><strong><span>tout(e)</span></strong><span> → </span><strong><span>toute la Chine</span></strong></p></li><li><p><strong><span>数词</span></strong><span>：</span><strong><span>zéro</span></strong><span>, </span><strong><span>un</span></strong><span>, </span><strong><span>deux</span></strong><span>, </span><strong><span>trois</span></strong><span>, </span><strong><span>quatre</span></strong><span> ...</span></p></li><li><p><strong><span>感叹形容词</span></strong><span>：</span><strong><span>quel</span></strong><span>, </span><strong><span>quelle</span></strong><span>, </span><strong><span>quels</span></strong><span>, </span><strong><span>quelles</span></strong><span> → </span><strong><span>Quelle horreur !</span></strong></p></li><li><p><strong><span>疑问形容词</span></strong><span>：</span><strong><span>quel</span></strong><span>, </span><strong><span>quelle</span></strong><span>, </span><strong><span>quels</span></strong><span>, </span><strong><span>quelles</span></strong></p></li></ul><hr /><h4 id='限定名词'><strong><span>限定名词</span></strong></h4><p><span>限定词位于名词前，意为“哪个”，“哪些”。例如：</span></p><ul><li><p><strong><span>Quel âge avez-vous ?</span></strong><span>（你几岁了？）</span></p></li><li><p><strong><span>Quelles langues parlez-vous ?</span></strong><span>（你说哪些语言？）</span></p></li></ul><p><strong><span>疑问形容词</span></strong><span> </span><strong><span>quel</span></strong><span> 也可以做表语：</span></p><ul><li><p><strong><span>Quel est votre nom ?</span></strong><span>（您的名字是什么？）</span></p></li><li><p><strong><span>Quelle est votre taille ?</span></strong><span>（您的身高是多少？）</span></p></li></ul><hr /><h4 id='限定词与名词的搭配'><strong><span>限定词与名词的搭配</span></strong></h4><p><span>限定词与名词一起使用时，名词前一般只有一种限定词，但</span><strong><span>数量词</span></strong><span>可以与其他限定词连用，如：</span></p><ul><li><p><strong><span>Je prends ces deux livres.</span></strong><span>（我拿这两本书。）</span></p></li></ul><hr /><h4 id='主有形容词指示形容词数词'><strong><span>主有形容词、指示形容词、数词</span></strong></h4><p><span>主有形容词、指示形容词、数词是限定词，是名词词组不可缺少的组成部分，而</span><strong><span>品质形容词</span></strong><span>（</span><strong><span>adjectif qualificatif</span></strong><span>）表示人或事物的品质、特征，是可以省略掉的句子成分，如下例中的</span><strong><span>petit</span></strong><span>：</span></p><ul><li><p><strong><span>Mon (petit) frère joue du piano tous les jours.</span></strong>
+<span> （我（小）弟弟每天都弹钢琴。）</span></p></li></ul><hr /><h3 id='2-直接宾语人称代词-pronoms-personnels-compléments-dobjet-directs'><strong><span>2. 直接宾语人称代词 (Pronoms personnels compléments d&#39;objet directs)</span></strong></h3><p><span>宾语为动词表示动作的对象或承受者。如果宾语和动词之间没有介词，则该宾语为</span><strong><span>直接宾语</span></strong><span>（</span><strong><span>complément d&#39;objet direct - COD</span></strong><span>），此类动词被称为</span><strong><span>直接及物动词</span></strong><span>。</span></p><p><strong><span>直接宾语人称代词的形式：</span></strong></p><figure class='table-figure'><table><thead><tr><th><strong><span>形式</span></strong></th><th><strong><span>翻译</span></strong></th></tr></thead><tbody><tr><td><strong><span>me (m’)</span></strong></td><td><span>我</span></td></tr><tr><td><strong><span>te (t’)</span></strong></td><td><span>你</span></td></tr><tr><td><strong><span>le (l’)</span></strong></td><td><span>他，它</span></td></tr><tr><td><strong><span>la (l’)</span></strong></td><td><span>她，它</span></td></tr><tr><td><strong><span>nous</span></strong></td><td><span>我们</span></td></tr><tr><td><strong><span>vous</span></strong></td><td><span>您，你们</span></td></tr><tr><td><strong><span>les</span></strong></td><td><span>他们，它们</span></td></tr></tbody></table></figure><hr /><h4 id='使用实例'><strong><span>使用实例：</span></strong></h4><p><strong><span>直接宾语人称代词位于相关动词前</span></strong><span>：</span></p><ul><li><p><strong><span>Est-ce que vous m&#39;écoutez ?</span></strong><span>（您在听我说话吗？）</span></p></li><li><p><strong><span>M&#39;aimes-tu Pierre ?</span></strong><span>（皮埃尔，你爱我吗？）</span></p></li><li><p><strong><span>Marie, je t&#39;aime.</span></strong><span>（玛丽，我爱你。）</span></p></li><li><p><strong><span>Ces manteaux en laine, je les aime beaucoup.</span></strong>
+<span> （这些羊毛大衣，我很喜欢。）</span></p></li><li><p><strong><span>Mais ces manteaux en coton, je ne les aime pas.</span></strong>
+<span> （但这些棉大衣，我不喜欢。）</span></p></li></ul><p><strong><span>相关的原形动词前</span></strong><span>：</span></p><ul><li><p><strong><span>Je peux te déranger une minute ?</span></strong>
+<span> （我可以打扰你一分钟吗？）</span></p></li><li><p><strong><span>Cette robe rouge, je voudrais la prendre.</span></strong>
+<span> （这件红色裙子，我想拿走。）</span></p></li><li><p><strong><span>Ce pantalon, j&#39;ai envie de l&#39;essayer.</span></strong>
+<span> （这条裤子，我想试穿一下。）</span></p></li><li><p><strong><span>Mais cette robe bleue, je n&#39;ai pas envie de l&#39;acheter.</span></strong>
+<span> （但是这件蓝色裙子，我不想买。）</span></p></li></ul><hr /><h4 id='直接宾语人称代词在疑问句和否定句中的位置'><strong><span>直接宾语人称代词在疑问句和否定句中的位置：</span></strong></h4><p><span>在疑问句和否定句中，直接宾语人称代词的位置会有所不同。具体规则和例子可继续展开。</span></p><p>&nbsp;</p><hr /><h3 id='1-关系代词-qui-le-pronom-relatif--qui-'><strong><span>1. 关系代词 qui (Le pronom relatif « qui »)</span></strong></h3><ul><li><p><strong><span>关系从句 (Propositions relatives)</span></strong><span>：由关系代词引出，修饰前面的名词，起到限定修饰或解释说明的作用，相当于英语中的定语从句。</span></p></li><li><p><strong><span>关系代词 (Pronoms relatifs)</span></strong><span>：代替先行词，连接先行词与关系从句，同时在关系从句中充当一定的成分。</span></p></li><li><p><strong><span>先行词 (Antécédent)</span></strong><span>：被关系从句限定修饰或解释说明、被关系代词指代的名词/代词等称为先行词。</span></p></li></ul><h4 id='关系代词-qui-的用法在关系从句中做主语'><strong><span>关系代词 qui 的用法</span></strong><span>：在关系从句中做主语</span></h4><ul><li><p><strong><span>Il y a un étudiant qui dort en cours !</span></strong>
+<span> （有一个学生在课堂上睡觉！）</span></p></li><li><p><strong><span>Je lis un livre qui parle de la révolution française.</span></strong>
+<span> （我读一本关于法国大革命的书。）</span></p></li><li><p><strong><span>Nous faisons des exercices qui sont très difficiles.</span></strong>
+<span> （我们做的练习非常难。）</span></p></li></ul><p><strong><span>请指出上述例句中的先行词、关系代词及关系从句分别是什么</span></strong><span>：</span></p><ul><li><p><span>先行词：</span><strong><span>un étudiant</span></strong><span>, </span><strong><span>un livre</span></strong><span>, </span><strong><span>des exercices</span></strong></p></li><li><p><span>关系代词：</span><strong><span>qui</span></strong></p></li><li><p><span>关系从句：</span><strong><span>qui dort en cours</span></strong><span>, </span><strong><span>qui parle de la révolution française</span></strong><span>, </span><strong><span>qui sont très difficiles</span></strong></p></li></ul><h4 id='观察qui-引导的关系从句中动词与谁配合包括性数变化'><strong><span>观察</span></strong><span>：</span><strong><span>qui</span></strong><span> 引导的关系从句中动词与谁配合（包括性数变化）？</span></h4><ul><li><p><strong><span>Comment s&#39;appelle la fille qui porte des lunettes de soleil ?</span></strong>
+<span> （那个戴太阳镜的女孩叫什么名字？）</span>
+<span> </span><strong><span>(qui = la fille)</span></strong></p></li><li><p><strong><span>Je peux regarder la robe qui est à votre gauche ?</span></strong>
+<span> （我可以看看在你左边的那条裙子吗？）</span>
+<span> </span><strong><span>(qui = la robe)</span></strong></p></li></ul><hr /><h3 id='2-指示代词-pronoms-démonstratifs'><strong><span>2. 指示代词 (Pronoms démonstratifs)</span></strong></h3><p><span>指示代词顾名思义，具有指代的作用，用来代替前面出现过的名词，避免重复该名词。</span></p><h4 id='形式celui-celle-ceux-celles'><strong><span>形式</span></strong><span>：</span><strong><span>celui</span></strong><span>, </span><strong><span>celle</span></strong><span>, </span><strong><span>ceux</span></strong><span>, </span><strong><span>celles</span></strong></h4><p><span>观察这四个指示代词，能发现一条规律：</span></p><ul><li><p><strong><span>celui = ce + lui</span></strong></p></li><li><p><strong><span>celle = ce + celle</span></strong></p></li><li><p><strong><span>ceux = ce + ceux</span></strong></p></li><li><p><strong><span>celles = ce + celles</span></strong></p></li></ul><p><span>因此：</span></p><ul><li><p><strong><span>celui</span></strong><span> 代替阳性单数名词</span></p></li><li><p><strong><span>celle</span></strong><span> 代替阴性单数名词</span></p></li><li><p><strong><span>ceux</span></strong><span> 代替阳性复数名词</span></p></li><li><p><strong><span>celles</span></strong><span> 代替阴性复数名词</span></p></li></ul><h4 id='用法-3'><strong><span>用法</span></strong><span>：</span></h4><p><span>用来指代前面提到的人或物，其后常接由 </span><strong><span>de</span></strong><span> 引导的补语或接关系从句。</span></p><ul><li><p><strong><span>Les enfants n&#39;aiment pas leurs jouets, ils aiment ceux de leurs copains.</span></strong>
+<span> （孩子们不喜欢他们自己的玩具，他们喜欢他们朋友的玩具。）</span></p></li><li><p><strong><span>Tu vois la belle fille, celle qui porte un pull rouge ?</span></strong>
+<span> （你看到那个漂亮的女孩了吗？她就是那个穿红色毛衣的女孩。）</span></p></li></ul><hr /><h3 id='3-间接宾语人称代词-pronoms-personnels-compléments-dobjet-indirects'><strong><span>3. 间接宾语人称代词 (Pronoms personnels compléments d&#39;objet indirects)</span></strong></h3><p><span>宾语是动词所表示动作的对象或承受者。如果宾语和动词之间需要介词连接，则该宾语为间接宾语（complément d&#39;objet indirect - COI）。只能带有间接宾语的动词被称为</span><strong><span>间接及物动词</span></strong><span>（verbe transitif indirect），如 </span><strong><span>penser à</span></strong><span>、</span><strong><span>plaire à</span></strong><span>、</span><strong><span>téléphoner à</span></strong><span>，以及后面将要学的 </span><strong><span>participer à</span></strong><span>、</span><strong><span>profiter de</span></strong><span> 等。</span></p><h4 id='间接宾语人称代词只能代替由介词-à-引导的指人的间接宾语具体形式如下'><strong><span>间接宾语人称代词</span></strong><span>：只能代替由介词 </span><strong><span>à</span></strong><span> 引导的指人的间接宾语，具体形式如下：</span></h4><figure class='table-figure'><table><thead><tr><th><strong><span>形式</span></strong></th><th><strong><span>翻译</span></strong></th></tr></thead><tbody><tr><td><strong><span>me (m’)</span></strong></td><td><span>我</span></td></tr><tr><td><strong><span>te (t’)</span></strong></td><td><span>你</span></td></tr><tr><td><strong><span>lui</span></strong></td><td><span>他，她，它</span></td></tr><tr><td><strong><span>leur</span></strong></td><td><span>他们，她们，它们</span></td></tr><tr><td><strong><span>nous</span></strong></td><td><span>我们</span></td></tr><tr><td><strong><span>vous</span></strong></td><td><span>您，你们</span></td></tr></tbody></table></figure><h4 id='具体使用间接宾语人称代词位于相关动词前'><strong><span>具体使用</span></strong><span>：间接宾语人称代词位于相关动词前。</span></h4><ul><li><p><strong><span>位于相关的变位动词前</span></strong><span>：</span></p><ul><li><p><strong><span>Elle ne lui parle pas.</span></strong><span>（她不跟他讲话。）</span></p></li><li><p><strong><span>Cette robe en soie lui va-t-elle bien ?</span></strong><span>（这条丝绸裙子适合她吗？）</span></p></li><li><p><strong><span>Chaque fois qu&#39;il me voit, il me sourit.</span></strong><span>（每次他看到我时，他都会对我微笑。）</span></p></li><li><p><strong><span>Le professeur leur dit bonjour.</span></strong><span>（老师向他们问好。）</span></p></li></ul></li><li><p><strong><span>位于相关的原形动词前</span></strong><span>：</span></p><ul><li><p><strong><span>Tu peux lui envoyer un SMS.</span></strong><span>（你可以给他发个短信吗？）</span></p></li><li><p><strong><span>À 6 h 45, elle va lui faire un bisou.</span></strong><span>（在6点45分，她会亲吻他。）</span></p></li><li><p><strong><span>Ma chérie, je vais te téléphoner tous les soirs.</span></strong><span>（亲爱的，我每天晚上都会给你打电话。）</span></p></li></ul></li></ul><h4 id='间接宾语人称代词在疑问句和否定句中的位置'><strong><span>间接宾语人称代词在疑问句和否定句中的位置：</span></strong></h4><ul><li><p><span>这些代词在疑问句和否定句中有特定的位置变化。具体规则可以进一步探讨。</span></p></li></ul><hr /><h3 id='注意事项'><strong><span>注意事项：</span></strong></h3><ul><li><p><strong><span>A penser à</span></strong><span> 后面指人的间接宾语不能用间接宾语人称代词代替，而要用重读人称代词，如：</span></p></li><li><p><span>parler à 、 téléphoner à 、 dire à 、 donner à 、 écrire à 、 répondre à 、 envoyer à 、 offrir à</span></p><ul><li><p><strong><span>Je pense à toi quand j&#39;entends cette chanson.</span></strong>
+<span> （每次我听到这首歌时，我都会想起你。）</span></p></li></ul></li></ul><p>&nbsp;</p><hr /><h3 id='1-直陈式最近将来时-le-futur-proche-de-lindicatif'><strong><span>1. 直陈式最近将来时 (Le futur proche de l&#39;indicatif)</span></strong></h3><p><span>最近将来时表示即将发生的动作或存在的状态。有时最近将来时也可以表示很长时间以后才会发生的动作。</span></p><h4 id='构成'><strong><span>构成</span></strong><span>：</span></h4><p><strong><span>aller</span></strong><span> + </span><strong><span>inf.</span></strong></p><ul><li><p><strong><span>Je vais partir.</span></strong><span>（我将要离开。）</span></p></li><li><p><strong><span>Ma femme va rentrer avec eux.</span></strong><span>（我的妻子将和他们一起回家。）</span></p></li><li><p><strong><span>Ils vont avoir 8 ans en octobre.</span></strong><span>（他们将在10月满8岁。）</span></p></li><li><p><strong><span>La semaine prochaine, nous allons organiser une exposition pour elle.</span></strong><span>（下周我们将为她举办一个展览。）</span></p></li><li><p><strong><span>Qu&#39;est-ce que vous allez faire ce week-end ?</span></strong><span>（你们这个周末打算做什么？）</span></p></li></ul><h4 id='否定形式ne-+-aller-变位-+-pas-+-inf'><strong><span>否定形式</span></strong><span>：</span><strong><span>ne</span></strong><span> + </span><strong><span>aller</span></strong><span> (变位) + </span><strong><span>pas</span></strong><span> + </span><strong><span>inf.</span></strong></h4><ul><li><p><strong><span>Moi, je vais partir. Mais toi, tu ne vas pas partir.</span></strong><span>（我将离开，但你不打算离开。）</span></p></li><li><p><strong><span>Il ne va pas pleuvoir cette semaine.</span></strong><span>（这周不会下雨。）</span></p></li><li><p><strong><span>Ce cadeau ne va pas lui plaire.</span></strong><span>（这个礼物他/她不会喜欢。）</span></p></li></ul><hr /><h3 id='2-序数词-nombres-ordinaux'><strong><span>2. 序数词 (Nombres ordinaux)</span></strong></h3><h4 id='构成基数词-+--ième'><strong><span>构成</span></strong><span>：基数词 + </span><strong><span>-ième</span></strong></h4><ul><li><p><strong><span>un, une</span></strong><span> → </span><strong><span>premier, première</span></strong></p></li><li><p><strong><span>huit</span></strong><span> → </span><strong><span>huitième</span></strong></p></li><li><p><strong><span>deux</span></strong><span> → </span><strong><span>deuxième / second, e</span></strong></p></li><li><p><strong><span>neuf</span></strong><span> → </span><strong><span>neuvième</span></strong></p></li><li><p><strong><span>trois</span></strong><span> → </span><strong><span>troisième</span></strong></p></li><li><p><strong><span>onze</span></strong><span> → </span><strong><span>onzième</span></strong></p></li><li><p><strong><span>quatre</span></strong><span> → </span><strong><span>quatrième</span></strong></p></li><li><p><strong><span>dix-neuf</span></strong><span> → </span><strong><span>dix-neuvième</span></strong></p></li><li><p><strong><span>cinq</span></strong><span> → </span><strong><span>cinquième</span></strong></p></li><li><p><strong><span>vingt et un</span></strong><span> → </span><strong><span>vingt et unième</span></strong></p></li><li><p><strong><span>six</span></strong><span> → </span><strong><span>sixième</span></strong></p></li><li><p><strong><span>vingt-deux</span></strong><span> → </span><strong><span>vingt-deuxième</span></strong></p></li><li><p><strong><span>sept</span></strong><span> → </span><strong><span>septième</span></strong></p></li><li><p><strong><span>cent</span></strong><span> → </span><strong><span>centième</span></strong></p></li></ul><h4 id='观察上面的序数词总结基数词变序数词的规律及特例'><strong><span>观察上面的序数词，总结基数词变序数词的规律及特例</span></strong><span>：</span></h4><ul><li><p><span>序数词的构成通常是基数词后加 </span><strong><span>-ième</span></strong><span>。</span></p></li><li><p><span>其中有一些特殊变化，如：</span></p><ul><li><p><strong><span>second</span></strong><span> 代替 </span><strong><span>deuxième</span></strong><span>，在表示“第二”时，</span><strong><span>second</span></strong><span> 用于阳性名词，</span><strong><span>seconde</span></strong><span> 用于阴性名词。</span></p></li></ul></li></ul><h4 id='用法-4'><strong><span>用法</span></strong><span>：</span></h4><ul><li><p><strong><span>序数词</span></strong><span>是限定词的一种，位于名词前，与名词性数配合，前面一般有定冠词或其他限定词。</span>
+<span> 例：</span></p><ul><li><p><strong><span>La première saison de l&#39;année, c&#39;est le printemps.</span></strong>
+<span> （一年的第一季是春天。）</span></p></li><li><p><strong><span>J&#39;habite au cinquième étage.</span></strong>
+<span> （我住在第五层。）</span></p></li><li><p><strong><span>Les premiers jours sont très difficiles.</span></strong>
+<span> （最初的几天非常困难。）</span></p></li><li><p><strong><span>Mon troisième enfant s&#39;appelle Louis.</span></strong>
+<span> （我的第三个孩子叫路易。）</span></p></li></ul></li><li><p><strong><span>序数词和基数词连用时，语序是“定冠词 + 基数词 + 序数词 + 名词”</span></strong><span>。</span>
+<span> 例：</span></p><ul><li><p><strong><span>Les six premières leçons de ce manuel sont très faciles.</span></strong>
+<span> （这本教材的前六课非常简单。）</span></p></li></ul></li></ul><hr /><h3 id='3-关系代词-que-le-pronom-relatif--que-'><strong><span>3. 关系代词 que (Le pronom relatif « que »)</span></strong></h3><p><span>观察下面两个例句：</span></p><ul><li><p><strong><span>La dame que je vais présenter à Vincent est une artiste très célèbre.</span></strong>
+<span> （我将介绍给文森特的那位女士是一位非常著名的艺术家。）</span></p></li><li><p><strong><span>J&#39;ai une chambre agréable que j&#39;aime beaucoup.</span></strong>
+<span> （我有一间我非常喜欢的舒适房间。）</span></p></li></ul><h4 id='问题'><strong><span>问题：</span></strong></h4><ol><li><p><span>以上两个例句中，关系代词 </span><strong><span>que</span></strong><span> 代替的先行词 </span><strong><span>la dame</span></strong><span> 和 </span><strong><span>une chambre</span></strong><span> 在从句中做什么成分？</span></p></li><li><p><span>关系代词 </span><strong><span>que</span></strong><span> 代替的先行词指人还是指物？</span></p></li><li><p><span>关系代词 </span><strong><span>que</span></strong><span> 与关系代词 </span><strong><span>qui</span></strong><span> 的用法有哪些区别？</span></p></li></ol><h4 id='结论'><strong><span>结论</span></strong><span>：</span></h4><ol><li><p><span>关系代词 </span><strong><span>que</span></strong><span> 在从句中充当直接宾语。</span></p></li><li><p><span>关系代词 </span><strong><span>que</span></strong><span> 代替先行词，可以指代人，也可以指代物。</span></p></li></ol><p><span>下列句子均可通过关系代词 </span><strong><span>que</span></strong><span> 连接为一个主从复合句：</span></p><ul><li><p><strong><span>Cette femme est notre maîtresse.</span></strong>
+<span> </span><strong><span>Tu la vois à gauche du bureau.</span></strong>
+<span> → </span><strong><span>La femme que tu vois à gauche du bureau est notre maîtresse.</span></strong><span> （这位女士是我们的老师。你看到她在办公桌左侧。 → 你在办公桌左侧看到的那位女士是我们的老师。）</span></p></li><li><p><strong><span>Cet appartement se trouve au centre-ville.</span></strong>
+<span> </span><strong><span>Martin va visiter cet appartement demain.</span></strong>
+<span> → </span><strong><span>L&#39;appartement que Martin va visiter demain se trouve au centre-ville.</span></strong>
+<span> （这个公寓位于市中心。马丁明天将参观这个公寓。 → 马丁明天将参观的这个公寓位于市中心。）</span></p></li><li><p><strong><span>La salle de bains et les toilettes sont au bout du couloir.</span></strong>
+<span> </span><strong><span>Vous allez partager la salle de bains et les toilettes avec les enfants.</span></strong>
+<span> → </span><strong><span>La salle de bains et les toilettes, que vous allez partager avec les enfants, sont au bout du couloir.</span></strong>
+<span> （浴室和厕所在走廊的尽头。你们将和孩子们共享浴室和厕所。 → 你们将和孩子们共享的浴室和厕所在走廊的尽头。）</span></p></li></ul><p>&nbsp;</p><hr /><h3 id='1-泛指形容词-tout---tout--comme-adjectif-indéfini'><strong><span>1. 泛指形容词 tout ( « tout » comme adjectif indéfini)</span></strong></h3><p><span>泛指形容词 </span><strong><span>tout</span></strong><span> 为限定词，位于被限定词之前，与其性数配合。</span></p><h4 id='四种变化形式tout-toute-tous-toutes'><strong><span>四种变化形式</span></strong><span>：</span><strong><span>tout</span></strong><span>, </span><strong><span>toute</span></strong><span>, </span><strong><span>tous</span></strong><span>, </span><strong><span>toutes</span></strong></h4><h4 id='意义'><strong><span>意义</span></strong><span>：</span></h4><p><span>泛指形容词 </span><strong><span>tout</span></strong><span> 表示 “整个的，全部的，所有的”。</span></p><ul><li><p><strong><span>C&#39;est pareil pour toutes les jeunes mamans qui travaillent.</span></strong>
+<span> （这对所有工作的年轻妈妈都是一样的。）</span></p></li><li><p><strong><span>Je pense à toi tout le temps.</span></strong>
+<span> （我一直在想你。）</span></p></li><li><p><strong><span>Toute la journée.</span></strong>
+<span> （整整一天。）</span></p></li><li><p><strong><span>Tous les soirs.</span></strong>
+<span> （每个晚上。）</span></p></li><li><p><strong><span>Toutes les nuits.</span></strong>
+<span> （每个晚上。）</span></p></li></ul><h4 id='在否定句中否定词否定的是-tout-本身表达部分否定的意义'><strong><span>在否定句中</span></strong><span>，否定词否定的是 </span><strong><span>tout</span></strong><span> 本身，表达部分否定的意义：</span></h4><ul><li><p><strong><span>Toutes les femmes ne travaillent pas.</span></strong>
+<span> （不是所有女性都工作。）</span></p></li><li><p><strong><span>Tous les étudiants ne sont pas là.</span></strong>
+<span> （学生们还没有到齐。）</span></p></li><li><p><strong><span>Il ne fait pas chaud toute l&#39;année à Sanya.</span></strong>
+<span> （三亚并非一年四季都热。）</span></p></li></ul><hr /><h3 id='2-代词式动词-verbes-pronominaux'><strong><span>2. 代词式动词 (Verbes pronominaux)</span></strong></h3><p><span>代词式动词是指带有自反人称代词 </span><strong><span>se</span></strong><span> 的动词，是一类特殊的动词。</span></p><h4 id='变位'><strong><span>变位</span></strong><span>：</span></h4><p><span>代词式动词使用时，自反人称代词和动词本身都要根据主语进行相应的变化，见下例：</span></p><ul><li><p><strong><span>se lever</span></strong></p><ul><li><p><strong><span>je me lève</span></strong><span> ； </span><strong><span>nous nous levons</span></strong></p></li><li><p><strong><span>tu te lèves</span></strong><span> ； </span><strong><span>vous vous levez</span></strong></p></li><li><p><strong><span>il / elle / on se lève</span></strong><span> ； </span><strong><span>ils / elles se lèvent</span></strong></p></li></ul></li></ul><h4 id='代词式动词表达的意义'><strong><span>代词式动词表达的意义</span></strong><span>：</span></h4><ul><li><p><strong><span>自反意义</span></strong><span>：动作作用于主语本身，这一自反意义通过自反人称代词实现。</span></p><ul><li><p><strong><span>Je me lève tous les matins à 6 h 15.</span></strong>
+<span> （我每天早上6点15分起床。） （</span><strong><span>Je lève « moi-même »</span></strong><span>，自反代词 </span><strong><span>me</span></strong><span> 充当动词的直接宾语。）</span></p></li><li><p><strong><span>Les enfants n&#39;aiment pas se laver les dents.</span></strong>
+<span> （孩子们不喜欢刷牙。） （</span><strong><span>Ils lavent les dents « à eux »</span></strong><span>，自反代词 </span><strong><span>se</span></strong><span> 充当动词的间接宾语。）</span></p></li></ul></li><li><p><strong><span>相互意义</span></strong><span>：动作发生在主语之间，此时主语应该是复数或表示复数概念的人称代词 </span><strong><span>on</span></strong><span>。</span></p><ul><li><p><strong><span>Brigitte et Guy se téléphonent tous les soirs.</span></strong>
+<span> = </span><strong><span>Brigitte téléphone à Guy et Guy téléphone à Brigitte.</span></strong>
+<span> （布里吉特和吉一起每晚打电话。）</span></p></li><li><p><strong><span>Sophie et Pierre se saluent quand ils se voient.</span></strong>
+<span> = </span><strong><span>Sophie salue Pierre quand elle le voit et Pierre salue Sophie quand il la voit.</span></strong>
+<span> （索菲和皮埃尔互相打招呼，当他们见面时。）</span></p></li></ul></li><li><p><strong><span>被动意义</span></strong><span>：主语本身是动作的直接承受者。</span></p><ul><li><p><strong><span>Ça se mange ?</span></strong>
+<span> （这可以吃吗？） （主语 </span><strong><span>ça</span></strong><span> 是动词 </span><strong><span>manger</span></strong><span> 的对象，有被动含义，此时的自反人称代词总是直接宾语。）</span></p></li></ul></li><li><p><strong><span>绝对意义</span></strong><span>：在这种用法中，自反人称代词不是宾语，在句中不起任何语法作用，仅作为主语的补充和动词的必要修饰而存在。常见的有：</span></p><ul><li><p><strong><span>Je m&#39;en vais.</span></strong><span>（离开）</span></p></li><li><p><strong><span>Je ne me souviens plus de votre nom.</span></strong><span>（我不记得您的名字了。）</span></p></li><li><p><strong><span>Mes parents s&#39;occupent de notre enfant.</span></strong><span>（我的父母照顾我们的孩子。）</span></p></li></ul></li></ul><h4 id='自反人称代词的位置'><strong><span>自反人称代词的位置</span></strong><span>：</span></h4><p><span>相关动词前。</span></p><ul><li><p><strong><span>Je m&#39;appelle Podevin.</span></strong>
+<span> （我叫波德文。）</span></p></li><li><p><strong><span>Comment vous appelez-vous ?</span></strong>
+<span> （你叫什么名字？）</span></p></li><li><p><strong><span>On ne s&#39;amuse pas avec le feu.</span></strong>
+<span> （我们不和火玩。）</span></p></li><li><p><strong><span>Elle ne se lève pas tout de suite.</span></strong>
+<span> （她不会立刻起床。）</span></p></li><li><p><strong><span>Tu ne vas pas te marier avec cet homme riche ?</span></strong>
+<span> （你不打算和这个有钱人结婚吗？）</span></p></li></ul><hr /><h3 id='3-法语动词种类-espèces-de-verbes'><strong><span>3. 法语动词种类 (Espèces de verbes)</span></strong></h3><p><span>法语动词有不同的分类标准：</span></p><ul><li><p><strong><span>根据在句子中的语法功能</span></strong><span>，可以分为：</span></p><ul><li><p><span>一般动词</span></p></li><li><p><span>系动词（</span><strong><span>être</span></strong><span>）</span></p></li><li><p><span>助动词（</span><strong><span>avoir</span></strong><span>, </span><strong><span>être</span></strong><span>）</span></p></li><li><p><span>半助动词（</span><strong><span>aller</span></strong><span>, </span><strong><span>vouloir</span></strong><span>, </span><strong><span>devoir</span></strong><span>, </span><strong><span>pouvoir</span></strong><span>）</span></p></li></ul></li><li><p><strong><span>根据与其连用的成分性质</span></strong><span>，可以分为：</span></p><ul><li><p><strong><span>不及物动词</span></strong><span>（不能有宾语的动词，如 </span><strong><span>voyager</span></strong><span>）</span></p></li><li><p><strong><span>及物动词</span></strong><span>（可以有宾语的动词，如 </span><strong><span>prendre</span></strong><span>）</span></p><ul><li><p><span>及物动词包括带有直接宾语的直接及物动词（如 </span><strong><span>retrouver</span></strong><span>），以及只有间接宾语的间接及物动词（如 </span><strong><span>plaire</span></strong><span>, </span><strong><span>penser</span></strong><span> 等）。</span></p></li><li><p><span>法语中很多动词有时用作及物动词，有时用作不及物动词，如 </span><strong><span>passer</span></strong><span>：</span></p><ul><li><p><strong><span>On passe à table.</span></strong>
+<span> （我们吃饭了。）</span></p></li><li><p><strong><span>On va passer les vacances en Thaïlande.</span></strong>
+<span> （我们将去泰国度假。）</span></p></li></ul></li><li><p><span>还有一些动词有时用作直接及物动词，有时用作间接及物动词，如 </span><strong><span>parler</span></strong><span>：</span></p><ul><li><p><strong><span>Il parle français.</span></strong>
+<span> （他说法语。）</span></p></li><li><p><strong><span>Il parle de sa vie universitaire.</span></strong>
+<span> （他谈论他的大学生活。）</span></p></li></ul></li></ul></li></ul></li><li><p><strong><span>根据与主语的关系</span></strong><span>，可以分为：</span></p><ul><li><p><span>一般动词</span></p></li><li><p><span>无人称动词（如 </span><strong><span>pleuvoir</span></strong><span>）</span></p></li><li><p><span>代词式动词（如 </span><strong><span>se réveiller</span></strong><span>）</span></p></li></ul></li></ul><p><span>Here is the typeset version of your text:</span></p><hr /><h3 id='用-être-做助动词的复合过去时-le-passé-composé-avec-lauxiliaire--être-'><strong><span>用 être 做助动词的复合过去时 (Le passé composé avec l&#39;auxiliaire « être »)</span></strong></h3><p><span>部分不及物动词和所有的代词式动词在复合过去时及其他复合时态中用 </span><strong><span>être</span></strong><span> 做助动词。使用 </span><strong><span>être</span></strong><span> 做助动词的不及物动词都是表示位置移动或状态变化的动词。</span></p><ul><li><p><strong><span>aller</span></strong><span> (去) - Ils sont allés à Lyon.</span></p></li><li><p><strong><span>arriver</span></strong><span> (到达) - Elle est arrivée.</span></p></li><li><p><strong><span>descendre</span></strong><span> (下来) - Elle est descendue.</span></p></li><li><p><strong><span>devenir</span></strong><span> (变成) - Elle est devenue sa femme.</span></p></li><li><p><strong><span>entrer</span></strong><span> (进入) - Elle est entrée.</span></p></li><li><p><strong><span>monter</span></strong><span> (上去) - Il est monté.</span></p></li><li><p><strong><span>mourir</span></strong><span> (死亡) - Ils sont morts en 1944.</span></p></li><li><p><strong><span>naître</span></strong><span> (出生) - Elle est née en 1905.</span></p></li><li><p><strong><span>partir</span></strong><span> (离开) - Elle est partie.</span></p></li><li><p><strong><span>passer</span></strong><span> (经过) - Il est passé.</span></p></li><li><p><strong><span>rester</span></strong><span> (停留) - Ils sont restés.</span></p></li><li><p><strong><span>retourner</span></strong><span> (返回) - Il est retourné.</span></p></li><li><p><strong><span>sortir</span></strong><span> (出去) - Il est sorti.</span></p></li><li><p><strong><span>tomber</span></strong><span> (跌倒) - Elle est tombée.</span></p></li><li><p><strong><span>venir</span></strong><span> (来) - Il est venu de Lille.</span></p></li></ul><h4 id='à-vous-'><strong><span>À vous !</span></strong></h4><ol><li><p><strong><span>观察上面所有例句中动词的过去分词形式，可以发现什么规律？</span></strong></p></li><li><p><strong><span>请写出动词</span></strong><span> </span><strong><span>aller</span></strong><span> </span><strong><span>复合过去时的肯定、否定、肯定疑问倒装和否定疑问倒装形式。</span></strong></p></li></ol><hr /><h3 id='既可以用-être-又可以用-avoir-的动词常见的有五个请观察'><strong><span>既可以用 être 又可以用 avoir 的动词，常见的有五个，请观察：</span></strong></h3><ul><li><p><strong><span>monter</span></strong></p><ul><li><p><strong><span>Elle est montée à la tour Eiffel.</span></strong>
+<span> （她上了埃菲尔铁塔。）</span></p></li><li><p><strong><span>Elle a monté ses bagages au 6e étage.</span></strong>
+<span> （她把行李搬上了6楼。）</span></p></li></ul></li><li><p><strong><span>descendre</span></strong></p><ul><li><p><strong><span>Tu es descendu à la cave ?</span></strong>
+<span> （你下到地下室了吗？）</span></p></li><li><p><strong><span>Tu as descendu la poubelle ?</span></strong>
+<span> （你拿下垃圾桶了吗？）</span></p></li></ul></li><li><p><strong><span>sortir</span></strong></p><ul><li><p><strong><span>Il est sorti à six heures, ce soir.</span></strong>
+<span> （他今晚六点出去。）</span></p></li><li><p><strong><span>Il a sorti le chien, comme chaque matin.</span></strong>
+<span> （他像每天早上那样带狗出去。）</span></p></li></ul></li><li><p><strong><span>entrer / rentrer</span></strong></p><ul><li><p><strong><span>À quelle heure êtes-vous rentrés ?</span></strong>
+<span> （你们几点回来的？）</span></p></li><li><p><strong><span>Tu as entré le bon numéro ?</span></strong>
+<span> （你输入了正确的号码吗？）</span></p></li></ul></li><li><p><strong><span>passer</span></strong></p><ul><li><p><strong><span>Elle est passée le voir mais il n&#39;était pas là.</span></strong>
+<span> （她去看他了，但他不在。）</span></p></li><li><p><strong><span>Vous avez passé de bonnes vacances ?</span></strong>
+<span> （你们度假过得愉快吗？）</span></p></li></ul></li></ul><hr /><h4 id='à-vous--根据你的观察说出这些动词使用助动词的规律'><strong><span>À vous ! 根据你的观察说出这些动词使用助动词的规律。</span></strong></h4><hr /><h3 id='时间表达法-depuis--il-y-a'><strong><span>时间表达法：</span></strong><span> </span><strong><span>depuis</span></strong><span> / </span><strong><span>il y a</span></strong></h3><ul><li><p><strong><span>depuis</span></strong><span> 表示相关动作从过去一直持续到说话时，动词常为现在时或复合过去时的否定形式。</span></p><ul><li><p><strong><span>Les Dupont sont mariés depuis dix ans.</span></strong>
+<span> （杜庞夫妇结婚已经十年了。）</span></p></li><li><p><strong><span>L&#39;avion n&#39;a pas encore décollé ! Nous sommes dans l&#39;avion depuis déjà deux heures !</span></strong>
+<span> （飞机还没有起飞！我们已经在飞机上待了两个小时了！）</span></p></li><li><p><strong><span>Je n&#39;ai pas dormi depuis soixante-douze heures. Je suis épuisé maintenant.</span></strong>
+<span> （我已经72小时没睡觉了，现在我非常疲惫。）</span></p></li><li><p><strong><span>Madame Forestre n&#39;a pas revu son amie Mathilde depuis dix ans.</span></strong>
+<span> （福雷斯特夫人已经十年没见到她的朋友马蒂尔德了。）</span></p></li></ul></li><li><p><strong><span>il y a</span></strong><span> 意为 “（距离说话时）多长时间以前”，动词常为复合过去时。</span></p><ul><li><p><strong><span>Ce film est sorti il y a longtemps.</span></strong>
+<span> （这部电影很久以前就上映了。）</span></p></li><li><p><strong><span>Nous avons atterri avec succès à l&#39;aéroport de Roissy il y a cinq minutes.</span></strong>
+<span> （我们五分钟前成功降落在罗阿西机场。）</span></p></li></ul></li></ul><p>&nbsp;</p><hr /><h3 id='复合过去时-le-passé-composé'><strong><span>复合过去时 (Le passé composé)</span></strong></h3><p><span>复合过去时用来讲述过去发生过的事情。</span></p><h4 id='构成-2'><strong><span>构成</span></strong><span>：</span></h4><p><strong><span>助动词</span></strong><span> </span><strong><span>avoir</span></strong><span> 或 </span><strong><span>être</span></strong><span> 的直陈式现在时 + 动词的过去分词</span></p><ul><li><p><strong><span>J&#39;ai rencontré Sophie Marceau il y a un mois.</span></strong>
+<span> （我一个月前遇见了索菲·玛索。）</span></p></li><li><p><strong><span>Notre lecteur français est parti en France hier.</span></strong>
+<span> （我们的法语老师昨天去了法国。）</span></p></li></ul><p><span>(本课先学习以 </span><strong><span>avoir</span></strong><span> 做助动词的复合过去时)</span></p><hr /><h3 id='过去分词-le-participe-passé'><strong><span>过去分词 (Le participe passé)</span></strong></h3><h4 id='动词不定式变过去分词的一般规律'><strong><span>动词不定式变过去分词的一般规律</span></strong><span>：</span></h4><ol><li><p><strong><span>以 -er 结尾的动词</span></strong><span>：变 </span><strong><span>-er</span></strong><span> 为 </span><strong><span>-é</span></strong></p><ul><li><p><strong><span>aller</span></strong><span> → </span><strong><span>allé</span></strong><span>, </span><strong><span>manger</span></strong><span> → </span><strong><span>mangé</span></strong><span>, </span><strong><span>lever</span></strong><span> → </span><strong><span>levé</span></strong></p></li></ul></li><li><p><strong><span>第二组动词</span></strong><span>：变 </span><strong><span>-ir</span></strong><span> 为 </span><strong><span>-i</span></strong></p><ul><li><p><strong><span>finir</span></strong><span> → </span><strong><span>fini</span></strong><span>, </span><strong><span>réussir</span></strong><span> → </span><strong><span>réussi</span></strong><span>, </span><strong><span>grandir</span></strong><span> → </span><strong><span>grandi</span></strong></p></li></ul></li><li><p><strong><span>第三组动词</span></strong><span>：无一定规则，但词尾常为 </span><strong><span>i</span></strong><span>, </span><strong><span>is</span></strong><span>, </span><strong><span>it</span></strong><span>, </span><strong><span>u</span></strong></p><ul><li><p><strong><span>prendre</span></strong><span> → </span><strong><span>pris</span></strong><span>, </span><strong><span>dire</span></strong><span> → </span><strong><span>dit</span></strong><span>, </span><strong><span>sentir</span></strong><span> → </span><strong><span>senti</span></strong><span>, </span><strong><span>attendre</span></strong><span> → </span><strong><span>attendu</span></strong></p></li></ul></li></ol><h4 id='部分常用第三组不规则动词的过去分词'><strong><span>部分常用第三组不规则动词的过去分词</span></strong><span>：</span></h4><figure class='table-figure'><table><thead><tr><th><strong><span>不定式</span></strong></th><th><strong><span>过去分词</span></strong></th><th><strong><span>不定式</span></strong></th><th><strong><span>过去分词</span></strong></th></tr></thead><tbody><tr><td><strong><span>avoir</span></strong></td><td><strong><span>eu</span></strong></td><td><strong><span>obtenir</span></strong></td><td><strong><span>obtenu</span></strong></td></tr><tr><td><strong><span>accueillir</span></strong></td><td><strong><span>accueilli</span></strong></td><td><strong><span>offrir</span></strong></td><td><strong><span>offert</span></strong></td></tr><tr><td><strong><span>apprendre</span></strong></td><td><strong><span>appris</span></strong></td><td><strong><span>ouvrir</span></strong></td><td><strong><span>ouvert</span></strong></td></tr><tr><td><strong><span>attendre</span></strong></td><td><strong><span>attendu</span></strong></td><td><strong><span>partir</span></strong></td><td><strong><span>parti</span></strong></td></tr><tr><td><strong><span>boire</span></strong></td><td><strong><span>bu</span></strong></td><td><strong><span>peindre</span></strong></td><td><strong><span>peint</span></strong></td></tr><tr><td><strong><span>comprendre</span></strong></td><td><strong><span>compris</span></strong></td><td><strong><span>perdre</span></strong></td><td><strong><span>perdu</span></strong></td></tr><tr><td><strong><span>connaître</span></strong></td><td><strong><span>connu</span></strong></td><td><strong><span>plaire</span></strong></td><td><strong><span>plu</span></strong></td></tr><tr><td><strong><span>croire</span></strong></td><td><strong><span>cru</span></strong></td><td><strong><span>pleuvoir</span></strong></td><td><strong><span>plu</span></strong></td></tr><tr><td><strong><span>descendre</span></strong></td><td><strong><span>descendu</span></strong></td><td><strong><span>pouvoir</span></strong></td><td><strong><span>pu</span></strong></td></tr><tr><td><strong><span>devenir</span></strong></td><td><strong><span>devenu</span></strong></td><td><strong><span>prendre</span></strong></td><td><strong><span>pris</span></strong></td></tr><tr><td><strong><span>devoir</span></strong></td><td><strong><span>dû</span></strong></td><td><strong><span>recevoir</span></strong></td><td><strong><span>reçu</span></strong></td></tr><tr><td><strong><span>dire</span></strong></td><td><strong><span>dit</span></strong></td><td><strong><span>répondre</span></strong></td><td><strong><span>répondu</span></strong></td></tr><tr><td><strong><span>écrire</span></strong></td><td><strong><span>écrit</span></strong></td><td><strong><span>retenir</span></strong></td><td><strong><span>retenu</span></strong></td></tr><tr><td><strong><span>entendre</span></strong></td><td><strong><span>entendu</span></strong></td><td><strong><span>rire</span></strong></td><td><strong><span>ri</span></strong></td></tr><tr><td><strong><span>éteindre</span></strong></td><td><strong><span>éteint</span></strong></td><td><strong><span>savoir</span></strong></td><td><strong><span>su</span></strong></td></tr><tr><td><strong><span>être</span></strong></td><td><strong><span>été</span></strong></td><td><strong><span>sortir</span></strong></td><td><strong><span>sorti</span></strong></td></tr><tr><td><strong><span>faire</span></strong></td><td><strong><span>fait</span></strong></td><td><strong><span>sourire</span></strong></td><td><strong><span>souri</span></strong></td></tr></tbody></table></figure><h4 id='请仔细观察上表中不规则动词过去分词的构成有什么规律可循吗'><strong><span>请仔细观察上表中不规则动词过去分词的构成，有什么规律可循吗？</span></strong></h4><ul><li><p><span>规则：第三组动词过去分词没有固定规则，虽然它们的结尾有时会出现类似的形态（如 </span><strong><span>-u</span></strong><span>, </span><strong><span>-i</span></strong><span>, </span><strong><span>-é</span></strong><span>），但每个动词的变化是特定的，需要记忆。</span></p></li></ul><hr /><h3 id='用法-5'><strong><span>用法</span></strong></h3><ul><li><p><strong><span>用来表述讲话时已经完成的动作，即相对于现在而言已经结束的动作</span></strong><span>：</span></p><ul><li><p><strong><span>Tu as dîné ?</span></strong>
+<span> （你吃晚饭了吗？）</span></p></li><li><p><strong><span>Avez-vous téléphoné au professeur ?</span></strong>
+<span> （你给老师打电话了吗？）</span></p></li></ul></li><li><p><strong><span>表示过去发生的动作</span></strong><span>：</span></p><ul><li><p><strong><span>Ce matin, j&#39;ai pris le petit-déjeuner très tôt, à six heures.</span></strong>
+<span> （今天早上我六点钟吃了早餐。）</span></p></li><li><p><strong><span>Nous avons commencé à apprendre le français en septembre.</span></strong>
+<span> （我们在九月开始学习法语。）</span></p></li><li><p><strong><span>Il a été à Paris pendant trois jours.</span></strong>
+<span> （他在巴黎待了三天。）</span></p></li><li><p><strong><span>Elle a lu beaucoup de romans policiers avant.</span></strong>
+<span> （她以前读了很多侦探小说。）</span></p></li><li><p><strong><span>Elle a rencontré son mari il y a 20 ans.</span></strong>
+<span> （她20年前遇见了她的丈夫。）</span></p></li><li><p><strong><span>Qu&#39;avez-vous fait ces derniers jours ?</span></strong>
+<span> （你最近几天做了什么？）</span></p></li><li><p><strong><span>Tout à l&#39;heure, j&#39;ai téléphoné à ma petite amie pour lui dire adieu.</span></strong>
+<span> （刚才，我给我的女朋友打了电话跟她道别。）</span></p></li><li><p><strong><span>Il n&#39;a pas encore neigé cet hiver.</span></strong>
+<span> （这个冬天还没有下雪。）</span></p></li><li><p><strong><span>On a voyagé en Italie l&#39;an dernier.</span></strong>
+<span> （去年我们去了意大利旅行。）</span></p></li></ul></li></ul><h4 id='请观察上述例句中的时间表达法总结法语中表达过去的方式并举例说明'><strong><span>请观察上述例句中的时间表达法，总结法语中表达“过去”的方式并举例说明</span></strong><span>：</span></h4><ul><li><p><strong><span>法语中表达过去的方式</span></strong><span>：通常使用 </span><strong><span>复合过去时</span></strong><span> 来描述已经发生的动作，有时也可以使用 </span><strong><span>&quot;il y a&quot;</span></strong><span> 和 </span><strong><span>&quot;depuis&quot;</span></strong><span> 表示过去的时间段或动作持续的时间。</span></p></li></ul><hr /><h3 id='复合过去时从-时-的角度看'><strong><span>复合过去时从 “时” 的角度看</span></strong><span>：</span></h3><p><span>表示过去发生的动作；从 “体” 的角度看，表示完成体，有时与“现在”（即说话时）有某种关联。</span></p><ul><li><p><strong><span>Nous avons vu un bon film ce soir.</span></strong>
+<span> （晚上尚未过去，还沉浸在对电影的回味中。）</span></p></li></ul><hr /><h3 id='副词在复合过去时中的位置'><strong><span>副词在复合过去时中的位置</span></strong></h3><p><strong><span>复合过去时中，</span></strong><span> </span><strong><span>toujours</span></strong><span>, </span><strong><span>trop</span></strong><span>, </span><strong><span>déjà</span></strong><span>, </span><strong><span>beaucoup</span></strong><span>, </span><strong><span>bien</span></strong><span> 等副词以及泛指代词 </span><strong><span>rien</span></strong><span>，往往位于助动词和过去分词之间。</span>
+<span> 例如：</span></p><ul><li><p><strong><span>J&#39;ai déjà préparé le café.</span></strong>
+<span> （我已经准备好了咖啡。）</span></p></li><li><p><strong><span>Cet étudiant a beaucoup travaillé ce semestre.</span></strong>
+<span> （这个学生这个学期工作非常努力。）</span></p></li><li><p><strong><span>Vous avez vraiment bien réussi ce plat.</span></strong>
+<span> （你们真的是做得非常好这道菜。）</span></p></li><li><p><strong><span>L&#39;homme n&#39;a rien dit avant de partir.</span></strong>
+<span> （那个人在离开之前什么也没说。）</span></p></li></ul><hr /><h3 id='复合过去时的各种形式以-prendre-为例'><strong><span>复合过去时的各种形式（以</span></strong><span> </span><strong><span>prendre</span></strong><span> </span><strong><span>为例）</span></strong></h3><h4 id='肯定形式'><strong><span>肯定形式</span></strong><span>：</span></h4><ul><li><p><strong><span>j&#39;ai pris</span></strong></p></li><li><p><strong><span>nous avons pris</span></strong></p></li><li><p><strong><span>tu as pris</span></strong></p></li><li><p><strong><span>vous avez pris</span></strong></p></li><li><p><strong><span>il a pris</span></strong></p></li><li><p><strong><span>ils ont pris</span></strong></p></li><li><p><strong><span>elle a pris</span></strong></p></li><li><p><strong><span>elles ont pris</span></strong></p></li></ul><h4 id='否定形式'><strong><span>否定形式</span></strong><span>：</span></h4><ul><li><p><strong><span>je n&#39;ai pas pris</span></strong></p></li><li><p><strong><span>nous n&#39;avons pas pris</span></strong></p></li><li><p><strong><span>tu n&#39;as pas pris</span></strong></p></li><li><p><strong><span>vous n&#39;avez pas pris</span></strong></p></li><li><p><strong><span>il n&#39;a pas pris</span></strong></p></li><li><p><strong><span>ils n&#39;ont pas pris</span></strong></p></li><li><p><strong><span>elle n&#39;a pas pris</span></strong></p></li><li><p><strong><span>elles n&#39;ont pas pris</span></strong></p></li></ul><h4 id='肯定疑问倒装形式'><strong><span>肯定疑问倒装形式</span></strong><span>：</span></h4><ul><li><p><strong><span>Ai-je pris ?</span></strong></p></li><li><p><strong><span>Avons-nous pris ?</span></strong></p></li><li><p><strong><span>As-tu pris ?</span></strong></p></li><li><p><strong><span>Avez-vous pris ?</span></strong></p></li><li><p><strong><span>A-t-il pris ?</span></strong></p></li><li><p><strong><span>Ont-ils pris ?</span></strong></p></li><li><p><strong><span>A-t-elle pris ?</span></strong></p></li><li><p><strong><span>Ont-elles pris ?</span></strong></p></li></ul><h4 id='否定疑问倒装形式'><strong><span>否定疑问倒装形式</span></strong><span>：</span></h4><ul><li><p><strong><span>N&#39;ai-je pas pris ?</span></strong></p></li><li><p><strong><span>N&#39;avons-nous pas pris ?</span></strong></p></li><li><p><strong><span>N&#39;as-tu pas pris ?</span></strong></p></li><li><p><strong><span>N&#39;avez-vous pas pris ?</span></strong></p></li><li><p><strong><span>N&#39;a-t-il pas pris ?</span></strong></p></li><li><p><strong><span>N&#39;ont-ils pas pris ?</span></strong></p></li><li><p><strong><span>N&#39;a-t-elle pas pris ?</span></strong></p></li><li><p><strong><span>N&#39;ont-elles pas pris ?</span></strong></p></li></ul><h4 id='注意'><strong><span>注意</span></strong><span>：</span></h4><p><span>复合过去时的否定疑问倒装形式多用于书面语或雅语，口语中常用 </span><strong><span>est-ce que</span></strong><span> 结构或者语调直接上升。</span></p><p>&nbsp;</p><p>&nbsp;</p></div></div>
+</body>
+</html>
